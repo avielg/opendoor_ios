@@ -18,6 +18,7 @@
 		30C287D325E16E8300F3DBEC /* geocode_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30C287D225E16E8300F3DBEC /* geocode_data.csv */; };
 		30C287D825E16ED500F3DBEC /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287D725E16ED500F3DBEC /* Parser.swift */; };
 		30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287DC25E1903800F3DBEC /* AddressesViewController.swift */; };
+		30C6171025E1BF5A00BBE213 /* ExcelExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C6170F25E1BF5A00BBE213 /* ExcelExport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		30C287D225E16E8300F3DBEC /* geocode_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geocode_data.csv; sourceTree = "<group>"; };
 		30C287D725E16ED500F3DBEC /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		30C287DC25E1903800F3DBEC /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
+		30C6170F25E1BF5A00BBE213 /* ExcelExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExcelExport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		30C2878725DF46CE00F3DBEC = {
 			isa = PBXGroup;
 			children = (
+				30C6170E25E1BF4C00BBE213 /* Dependencies */,
 				30C287D225E16E8300F3DBEC /* geocode_data.csv */,
 				30C2879225DF46CE00F3DBEC /* opendoor */,
 				30C287A925DF46CF00F3DBEC /* opendoorTests */,
@@ -135,6 +138,14 @@
 				30C287B725DF46CF00F3DBEC /* Info.plist */,
 			);
 			path = opendoorUITests;
+			sourceTree = "<group>";
+		};
+		30C6170E25E1BF4C00BBE213 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				30C6170F25E1BF5A00BBE213 /* ExcelExport.swift */,
+			);
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +282,7 @@
 				30C287D825E16ED500F3DBEC /* Parser.swift in Sources */,
 				30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */,
 				30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */,
+				30C6171025E1BF5A00BBE213 /* ExcelExport.swift in Sources */,
 				30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */,
 				30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */,
 			);
