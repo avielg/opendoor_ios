@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2879325DF46CE00F3DBEC /* AppDelegate.swift */; };
+		30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */; };
+		30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2879725DF46CE00F3DBEC /* MapViewController.swift */; };
+		30C2879B25DF46CE00F3DBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2879925DF46CE00F3DBEC /* Main.storyboard */; };
+		30C2879D25DF46CF00F3DBEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2879C25DF46CF00F3DBEC /* Assets.xcassets */; };
+		30C287A025DF46CF00F3DBEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2879E25DF46CF00F3DBEC /* LaunchScreen.storyboard */; };
+		30C287AB25DF46CF00F3DBEC /* opendoorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287AA25DF46CF00F3DBEC /* opendoorTests.swift */; };
+		30C287B625DF46CF00F3DBEC /* opendoorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287B525DF46CF00F3DBEC /* opendoorUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		30C287A725DF46CF00F3DBEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30C2878825DF46CE00F3DBEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30C2878F25DF46CE00F3DBEC;
+			remoteInfo = opendoor;
+		};
+		30C287B225DF46CF00F3DBEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30C2878825DF46CE00F3DBEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30C2878F25DF46CE00F3DBEC;
+			remoteInfo = opendoor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		30C2879025DF46CE00F3DBEC /* opendoor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = opendoor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C2879325DF46CE00F3DBEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		30C2879725DF46CE00F3DBEC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		30C2879A25DF46CE00F3DBEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		30C2879C25DF46CF00F3DBEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30C2879F25DF46CF00F3DBEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		30C287A125DF46CF00F3DBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30C287A625DF46CF00F3DBEC /* opendoorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = opendoorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C287AA25DF46CF00F3DBEC /* opendoorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = opendoorTests.swift; sourceTree = "<group>"; };
+		30C287AC25DF46CF00F3DBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30C287B125DF46CF00F3DBEC /* opendoorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = opendoorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C287B525DF46CF00F3DBEC /* opendoorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = opendoorUITests.swift; sourceTree = "<group>"; };
+		30C287B725DF46CF00F3DBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30C2878D25DF46CE00F3DBEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C287A325DF46CF00F3DBEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C287AE25DF46CF00F3DBEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30C2878725DF46CE00F3DBEC = {
+			isa = PBXGroup;
+			children = (
+				30C2879225DF46CE00F3DBEC /* opendoor */,
+				30C287A925DF46CF00F3DBEC /* opendoorTests */,
+				30C287B425DF46CF00F3DBEC /* opendoorUITests */,
+				30C2879125DF46CE00F3DBEC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		30C2879125DF46CE00F3DBEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30C2879025DF46CE00F3DBEC /* opendoor.app */,
+				30C287A625DF46CF00F3DBEC /* opendoorTests.xctest */,
+				30C287B125DF46CF00F3DBEC /* opendoorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30C2879225DF46CE00F3DBEC /* opendoor */ = {
+			isa = PBXGroup;
+			children = (
+				30C2879325DF46CE00F3DBEC /* AppDelegate.swift */,
+				30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */,
+				30C2879725DF46CE00F3DBEC /* MapViewController.swift */,
+				30C2879925DF46CE00F3DBEC /* Main.storyboard */,
+				30C2879C25DF46CF00F3DBEC /* Assets.xcassets */,
+				30C2879E25DF46CF00F3DBEC /* LaunchScreen.storyboard */,
+				30C287A125DF46CF00F3DBEC /* Info.plist */,
+			);
+			path = opendoor;
+			sourceTree = "<group>";
+		};
+		30C287A925DF46CF00F3DBEC /* opendoorTests */ = {
+			isa = PBXGroup;
+			children = (
+				30C287AA25DF46CF00F3DBEC /* opendoorTests.swift */,
+				30C287AC25DF46CF00F3DBEC /* Info.plist */,
+			);
+			path = opendoorTests;
+			sourceTree = "<group>";
+		};
+		30C287B425DF46CF00F3DBEC /* opendoorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				30C287B525DF46CF00F3DBEC /* opendoorUITests.swift */,
+				30C287B725DF46CF00F3DBEC /* Info.plist */,
+			);
+			path = opendoorUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30C2878F25DF46CE00F3DBEC /* opendoor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30C287BA25DF46CF00F3DBEC /* Build configuration list for PBXNativeTarget "opendoor" */;
+			buildPhases = (
+				30C2878C25DF46CE00F3DBEC /* Sources */,
+				30C2878D25DF46CE00F3DBEC /* Frameworks */,
+				30C2878E25DF46CE00F3DBEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = opendoor;
+			productName = opendoor;
+			productReference = 30C2879025DF46CE00F3DBEC /* opendoor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		30C287A525DF46CF00F3DBEC /* opendoorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30C287BD25DF46CF00F3DBEC /* Build configuration list for PBXNativeTarget "opendoorTests" */;
+			buildPhases = (
+				30C287A225DF46CF00F3DBEC /* Sources */,
+				30C287A325DF46CF00F3DBEC /* Frameworks */,
+				30C287A425DF46CF00F3DBEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30C287A825DF46CF00F3DBEC /* PBXTargetDependency */,
+			);
+			name = opendoorTests;
+			productName = opendoorTests;
+			productReference = 30C287A625DF46CF00F3DBEC /* opendoorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		30C287B025DF46CF00F3DBEC /* opendoorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30C287C025DF46CF00F3DBEC /* Build configuration list for PBXNativeTarget "opendoorUITests" */;
+			buildPhases = (
+				30C287AD25DF46CF00F3DBEC /* Sources */,
+				30C287AE25DF46CF00F3DBEC /* Frameworks */,
+				30C287AF25DF46CF00F3DBEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30C287B325DF46CF00F3DBEC /* PBXTargetDependency */,
+			);
+			name = opendoorUITests;
+			productName = opendoorUITests;
+			productReference = 30C287B125DF46CF00F3DBEC /* opendoorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30C2878825DF46CE00F3DBEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					30C2878F25DF46CE00F3DBEC = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					30C287A525DF46CF00F3DBEC = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 30C2878F25DF46CE00F3DBEC;
+					};
+					30C287B025DF46CF00F3DBEC = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 30C2878F25DF46CE00F3DBEC;
+					};
+				};
+			};
+			buildConfigurationList = 30C2878B25DF46CE00F3DBEC /* Build configuration list for PBXProject "opendoor" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 30C2878725DF46CE00F3DBEC;
+			productRefGroup = 30C2879125DF46CE00F3DBEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30C2878F25DF46CE00F3DBEC /* opendoor */,
+				30C287A525DF46CF00F3DBEC /* opendoorTests */,
+				30C287B025DF46CF00F3DBEC /* opendoorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30C2878E25DF46CE00F3DBEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C287A025DF46CF00F3DBEC /* LaunchScreen.storyboard in Resources */,
+				30C2879D25DF46CF00F3DBEC /* Assets.xcassets in Resources */,
+				30C2879B25DF46CE00F3DBEC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C287A425DF46CF00F3DBEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C287AF25DF46CF00F3DBEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30C2878C25DF46CE00F3DBEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */,
+				30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */,
+				30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C287A225DF46CF00F3DBEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C287AB25DF46CF00F3DBEC /* opendoorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C287AD25DF46CF00F3DBEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C287B625DF46CF00F3DBEC /* opendoorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		30C287A825DF46CF00F3DBEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30C2878F25DF46CE00F3DBEC /* opendoor */;
+			targetProxy = 30C287A725DF46CF00F3DBEC /* PBXContainerItemProxy */;
+		};
+		30C287B325DF46CF00F3DBEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30C2878F25DF46CE00F3DBEC /* opendoor */;
+			targetProxy = 30C287B225DF46CF00F3DBEC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		30C2879925DF46CE00F3DBEC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30C2879A25DF46CE00F3DBEC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		30C2879E25DF46CF00F3DBEC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30C2879F25DF46CF00F3DBEC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		30C287B825DF46CF00F3DBEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		30C287B925DF46CF00F3DBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		30C287BB25DF46CF00F3DBEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = opendoor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.avielgross.opendoor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30C287BC25DF46CF00F3DBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = opendoor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.avielgross.opendoor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		30C287BE25DF46CF00F3DBEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = opendoorTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.avielgross.opendoorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/opendoor.app/opendoor";
+			};
+			name = Debug;
+		};
+		30C287BF25DF46CF00F3DBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = opendoorTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.avielgross.opendoorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/opendoor.app/opendoor";
+			};
+			name = Release;
+		};
+		30C287C125DF46CF00F3DBEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = opendoorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.avielgross.opendoorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = opendoor;
+			};
+			name = Debug;
+		};
+		30C287C225DF46CF00F3DBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = opendoorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.avielgross.opendoorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = opendoor;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30C2878B25DF46CE00F3DBEC /* Build configuration list for PBXProject "opendoor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30C287B825DF46CF00F3DBEC /* Debug */,
+				30C287B925DF46CF00F3DBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30C287BA25DF46CF00F3DBEC /* Build configuration list for PBXNativeTarget "opendoor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30C287BB25DF46CF00F3DBEC /* Debug */,
+				30C287BC25DF46CF00F3DBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30C287BD25DF46CF00F3DBEC /* Build configuration list for PBXNativeTarget "opendoorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30C287BE25DF46CF00F3DBEC /* Debug */,
+				30C287BF25DF46CF00F3DBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30C287C025DF46CF00F3DBEC /* Build configuration list for PBXNativeTarget "opendoorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30C287C125DF46CF00F3DBEC /* Debug */,
+				30C287C225DF46CF00F3DBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30C2878825DF46CE00F3DBEC /* Project object */;
+}
