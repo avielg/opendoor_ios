@@ -15,6 +15,8 @@
 		30C287A025DF46CF00F3DBEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2879E25DF46CF00F3DBEC /* LaunchScreen.storyboard */; };
 		30C287AB25DF46CF00F3DBEC /* opendoorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287AA25DF46CF00F3DBEC /* opendoorTests.swift */; };
 		30C287B625DF46CF00F3DBEC /* opendoorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287B525DF46CF00F3DBEC /* opendoorUITests.swift */; };
+		30C287D325E16E8300F3DBEC /* geocode_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30C287D225E16E8300F3DBEC /* geocode_data.csv */; };
+		30C287D825E16ED500F3DBEC /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287D725E16ED500F3DBEC /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		30C287B125DF46CF00F3DBEC /* opendoorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = opendoorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30C287B525DF46CF00F3DBEC /* opendoorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = opendoorUITests.swift; sourceTree = "<group>"; };
 		30C287B725DF46CF00F3DBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30C287D225E16E8300F3DBEC /* geocode_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geocode_data.csv; sourceTree = "<group>"; };
+		30C287D725E16ED500F3DBEC /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 		30C2878725DF46CE00F3DBEC = {
 			isa = PBXGroup;
 			children = (
+				30C287D225E16E8300F3DBEC /* geocode_data.csv */,
 				30C2879225DF46CE00F3DBEC /* opendoor */,
 				30C287A925DF46CF00F3DBEC /* opendoorTests */,
 				30C287B425DF46CF00F3DBEC /* opendoorUITests */,
@@ -102,6 +107,7 @@
 				30C2879325DF46CE00F3DBEC /* AppDelegate.swift */,
 				30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */,
 				30C2879725DF46CE00F3DBEC /* MapViewController.swift */,
+				30C287D725E16ED500F3DBEC /* Parser.swift */,
 				30C2879925DF46CE00F3DBEC /* Main.storyboard */,
 				30C2879C25DF46CF00F3DBEC /* Assets.xcassets */,
 				30C2879E25DF46CF00F3DBEC /* LaunchScreen.storyboard */,
@@ -234,6 +240,7 @@
 				30C287A025DF46CF00F3DBEC /* LaunchScreen.storyboard in Resources */,
 				30C2879D25DF46CF00F3DBEC /* Assets.xcassets in Resources */,
 				30C2879B25DF46CE00F3DBEC /* Main.storyboard in Resources */,
+				30C287D325E16E8300F3DBEC /* geocode_data.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C287D825E16ED500F3DBEC /* Parser.swift in Sources */,
 				30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */,
 				30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */,
 				30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */,
