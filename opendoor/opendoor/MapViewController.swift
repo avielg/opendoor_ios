@@ -79,7 +79,7 @@ class MapViewController: UIViewController {
         {
             vc.addresses = shownAnnotations
         }
-
+        setDrawing(false)
     }
 }
 
@@ -105,16 +105,25 @@ extension MapViewController {
     }
 }
 
+// MARK: UI Logic
+extension MapViewController {
+    private func toggleDrawing() {
+        setDrawing(!isDrawing)
+    }
+
+    internal func setDrawing(_ value: Bool) {
+        isDrawing = value
+        let tint = buttonDraw.tintColor
+        buttonDraw.tintColor = buttonDraw.backgroundColor
+        buttonDraw.backgroundColor = tint
+    }
+}
+
 // MARK: IBActions
 extension MapViewController {
     @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) {}
 
-    @IBAction func actionDraw(_ sender: UIButton) {
-        isDrawing = !isDrawing
-        let tint = sender.tintColor
-        sender.tintColor = sender.backgroundColor
-        sender.backgroundColor = tint
-    }
+    @IBAction func actionDraw(_ sender: UIButton) { toggleDrawing() }
 }
 
 // MARK: Track Touches
