@@ -10,8 +10,17 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+    var allAnnotations = [MKAnnotation]()
     var shownAnnotations = [MKAnnotation]() {
         didSet {
+            guard !shownAnnotations.elementsEqual(oldValue, by: {
+                $0.coordinate.latitude == $1.coordinate.latitude
+                    && $0.coordinate.longitude == $1.coordinate.longitude
+            }) else { return }
+
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.addAnnotations(shownAnnotations)
+
             buttonFoundAddresses.isHidden = shownAnnotations.isEmpty
             buttonFoundAddresses.setTitle("\(shownAnnotations.count) Addresses", for: .normal)
         }
@@ -62,8 +71,9 @@ class MapViewController: UIViewController {
             annotation.coordinate = coord
             annotation.title = name
             annotation.subtitle = address
-            self.mapView.addAnnotation(annotation)
+            allAnnotations.append(annotation)
         }
+        self.shownAnnotations = allAnnotations
     }
 
 
@@ -96,14 +106,13 @@ extension MapViewController {
 
         var annotations = [MKAnnotation]()
 
-        for annotation in mapView.annotations {
+        for annotation in allAnnotations {
             let mapPoint = MKMapPoint(annotation.coordinate)
             let polygonRenderer = MKPolygonRenderer(polygon: polygon)
 
             let polygonPoint = polygonRenderer.point(for: mapPoint)
             let mapCoordinateIsInPolygon = polygonRenderer.path.contains(polygonPoint)
 
-            mapView.view(for: annotation)?.isHidden = !mapCoordinateIsInPolygon
             if mapCoordinateIsInPolygon { annotations.append(annotation) }
         }
 
