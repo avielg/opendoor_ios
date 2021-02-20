@@ -20,7 +20,13 @@ class MapViewController: UIViewController {
     var points = [CLLocationCoordinate2D]()
     var isDrawing: Bool {
         get { return !mapView.isUserInteractionEnabled }
-        set { mapView.isUserInteractionEnabled = !mapView.isUserInteractionEnabled }
+        set {
+            guard isDrawing != newValue else { return }
+            mapView.isUserInteractionEnabled = !newValue
+            let tint = buttonDraw.tintColor
+            buttonDraw.tintColor = buttonDraw.backgroundColor
+            buttonDraw.backgroundColor = tint
+        }
     }
 
     let locationManager = CLLocationManager()
@@ -79,7 +85,7 @@ class MapViewController: UIViewController {
         {
             vc.addresses = shownAnnotations
         }
-        setDrawing(false)
+        isDrawing = false
     }
 }
 
@@ -112,14 +118,7 @@ extension MapViewController {
 // MARK: UI Logic
 extension MapViewController {
     private func toggleDrawing() {
-        setDrawing(!isDrawing)
-    }
-
-    internal func setDrawing(_ value: Bool) {
-        isDrawing = value
-        let tint = buttonDraw.tintColor
-        buttonDraw.tintColor = buttonDraw.backgroundColor
-        buttonDraw.backgroundColor = tint
+        isDrawing = !isDrawing
     }
 }
 

@@ -145,11 +145,18 @@
                                 <segue destination="Dzt-XC-PoL" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="9DO-e9-OBd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="fTv-tD-7Ya">
-                            <connections>
-                                <action selector="actionShare:" destination="zsW-Lj-F7j" id="vAD-FV-UHe"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="fTv-tD-7Ya">
+                                <connections>
+                                    <action selector="actionShare:" destination="zsW-Lj-F7j" id="vAD-FV-UHe"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="folder" catalog="system" id="DGu-M8-jln">
+                                <connections>
+                                    <action selector="actionSave:" destination="zsW-Lj-F7j" id="pgT-Oa-fuX"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="LSa-d3-oLh" id="gHj-sg-wMs"/>
@@ -180,6 +187,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="folder" catalog="system" width="128" height="97"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="pencil.and.outline" catalog="system" width="128" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>

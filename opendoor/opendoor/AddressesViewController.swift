@@ -8,6 +8,11 @@
 import UIKit
 import MapKit
 
+enum AddressesError: Error {
+    case missingValue(MKAnnotation)
+    case failedExportingFile
+}
+
 class AddressesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
@@ -17,37 +22,53 @@ class AddressesViewController: UIViewController {
         }
     }
 
-    internal func presentShare(from item: UIBarButtonItem, then: @escaping ()->()) {
+    internal func exportToExcel(result: @escaping (Result<URL, Error>)->()) {
         let rows: [ExcelRow] = addresses.compactMap {
             guard
                 let name = $0.title as? String,
                 let address = $0.subtitle as? String
             else {
-                print("Error: No values in \($0)")
+                result(.failure(AddressesError.missingValue($0)))
                 return nil
             }
             return ExcelRow([ExcelCell(address), ExcelCell(name)])
         }
         let sheet = ExcelSheet(rows, name: "Properties")
-        let name = "philly_\(addresses.count)_addresses.xls"
+        let name = "philly_\(addresses.count)_addresses"
         ExcelExport.export([sheet], fileName: name) { url in
-            guard let path = url else { return }
-            self.shareData(path, from: item)
-            then()
+            guard let path = url else {
+                result(.failure(AddressesError.failedExportingFile))
+                return
+            }
+            result(.success(path))
         }
     }
 
-    private func shareData(_ dataPathToShare: URL, from item: UIBarButtonItem) {
-        let excelData = UIDocumentInteractionController(url: dataPathToShare)
-        excelData.presentOptionsMenu(from: item, animated: true)
+    private func shareFile(_ url: URL, from item: UIBarButtonItem) {
+        let excelData = UIDocumentInteractionController(url: url)
+        excelData.presentOpenInMenu(from: item, animated: true)
+    }
+
+    private func saveFile(_ url: URL, from item: UIBarButtonItem) {
+        let controller = UIDocumentPickerViewController(url: url, in: .exportToService)
+        present(controller, animated: true, completion: nil)
     }
 }
 
 // MARK: IBActions
 extension AddressesViewController {
     @IBAction func actionShare(_ sender: UIBarButtonItem) {
-        sender.isEnabled = false // avoid "abuse" clicking
-        presentShare(from: sender) { sender.isEnabled = true }
+        exportToExcel {
+            guard case .success(let path) = $0 else { return }
+            self.shareFile(path, from: sender)
+        }
+    }
+
+    @IBAction func actionSave(_ sender: UIBarButtonItem) {
+        exportToExcel {
+            guard case .success(let path) = $0 else { return }
+            self.saveFile(path, from: sender)
+        }
     }
 }
 
