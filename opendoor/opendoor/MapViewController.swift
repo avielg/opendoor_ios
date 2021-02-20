@@ -89,12 +89,12 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = .orange
-            polylineRenderer.lineWidth = 5
+            polylineRenderer.strokeColor = .systemGray
+            polylineRenderer.lineWidth = 2
             return polylineRenderer
         } else if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
-            polygonView.fillColor = .magenta
+            polygonView.fillColor = UIColor.quaternarySystemFill.withAlphaComponent(0.3)
             return polygonView
         }
         return MKPolylineRenderer(overlay: overlay)
@@ -102,7 +102,6 @@ extension MapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         mapView.setCenter(userLocation.coordinate, animated: true)
-
 
         let radius = 3000 // meters
         let distance = CLLocationDistance(exactly: radius)!
