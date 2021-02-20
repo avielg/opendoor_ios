@@ -42,6 +42,27 @@
                                     <action selector="actionDraw:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XCa-ei-2P8"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcw-fh-olx">
+                                <rect key="frame" x="20" y="44" width="147" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="0.65638286560000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="gHt-Va-sOy"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                <state key="normal" title="9 Addresses" image="house" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="xDp-EE-iCQ" kind="popoverPresentation" identifier="showAddressesSegue" popoverAnchorView="dcw-fh-olx" id="0ep-VK-ke5">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -50,12 +71,15 @@
                             <constraint firstItem="tvf-R2-Wmg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="6vK-qV-tle"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tvf-R2-Wmg" secondAttribute="trailing" id="83X-Ir-eeb"/>
                             <constraint firstItem="ZNe-zI-MXB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IWH-8a-F4T"/>
+                            <constraint firstItem="dcw-fh-olx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kCR-4i-HrI"/>
                             <constraint firstAttribute="bottom" secondItem="tvf-R2-Wmg" secondAttribute="bottom" id="trI-Ng-RIw"/>
                             <constraint firstItem="tvf-R2-Wmg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="twb-0u-77f"/>
+                            <constraint firstItem="dcw-fh-olx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zcB-8S-FO1"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonDraw" destination="ZNe-zI-MXB" id="QaT-Ww-YXR"/>
+                        <outlet property="buttonFoundAddresses" destination="dcw-fh-olx" id="DTh-im-ZDO"/>
                         <outlet property="mapView" destination="tvf-R2-Wmg" id="879-1H-8Dn"/>
                     </connections>
                 </viewController>
@@ -63,9 +87,102 @@
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
         </scene>
+        <!--Addresses View Controller-->
+        <scene sceneID="mYK-n6-Nch">
+            <objects>
+                <viewController id="zsW-Lj-F7j" customClass="AddressesViewController" customModule="opendoor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G0b-2u-YnP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LSa-d3-oLh">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="1Dm-aO-0DV" detailTextLabel="52z-Y2-nhh" style="IBUITableViewCellStyleSubtitle" id="8qR-KE-zZQ">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8qR-KE-zZQ" id="qRM-4n-ji7">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Dm-aO-0DV">
+                                                    <rect key="frame" x="20" y="10" width="33" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="52z-Y2-nhh">
+                                                    <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zsW-Lj-F7j" id="9pv-ZF-O3e"/>
+                                    <outlet property="delegate" destination="zsW-Lj-F7j" id="1og-NB-Tys"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pup-bv-3Oq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LSa-d3-oLh" firstAttribute="top" secondItem="pup-bv-3Oq" secondAttribute="top" id="86F-rB-lUf"/>
+                            <constraint firstItem="LSa-d3-oLh" firstAttribute="bottom" secondItem="pup-bv-3Oq" secondAttribute="bottom" id="E56-I0-xg6"/>
+                            <constraint firstItem="pup-bv-3Oq" firstAttribute="trailing" secondItem="LSa-d3-oLh" secondAttribute="trailing" id="VzT-Sd-Saz"/>
+                            <constraint firstItem="LSa-d3-oLh" firstAttribute="leading" secondItem="pup-bv-3Oq" secondAttribute="leading" id="dqk-g7-EQw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vyx-iP-jwn">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="vx3-d3-Ebj">
+                            <connections>
+                                <segue destination="Dzt-XC-PoL" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="9DO-e9-OBd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="fTv-tD-7Ya">
+                            <connections>
+                                <action selector="actionShare:" destination="zsW-Lj-F7j" id="vAD-FV-UHe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="LSa-d3-oLh" id="gHj-sg-wMs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="asg-zt-0L3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Dzt-XC-PoL" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1713.0434782608697" y="93.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9Uw-Ls-M3X">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xDp-EE-iCQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="jWn-RW-kw5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zsW-Lj-F7j" kind="relationship" relationship="rootViewController" id="Dye-RU-Xaf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BD5-74-jkO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="802.89855072463774" y="93.75"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="house" catalog="system" width="128" height="106"/>
         <image name="pencil.and.outline" catalog="system" width="128" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

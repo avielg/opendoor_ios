@@ -10,6 +10,13 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+    var shownAnnotations = [MKAnnotation]() {
+        didSet {
+            buttonFoundAddresses.isHidden = shownAnnotations.isEmpty
+            buttonFoundAddresses.setTitle("\(shownAnnotations.count) Addresses", for: .normal)
+        }
+    }
+
     var points = [CLLocationCoordinate2D]()
     var isDrawing: Bool {
         get { return !mapView.isUserInteractionEnabled }
@@ -22,15 +29,18 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
 
     @IBOutlet weak var buttonDraw: UIButton!
+    @IBOutlet weak var buttonFoundAddresses: UIButton!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        buttonFoundAddresses.setTitleColor(buttonFoundAddresses.tintColor, for: .normal)
+
         let placesData = Parser.parseCSV(named: "geocode_data") ?? []
         print("GEO: \(placesData.count) places")
 
-        for place in placesData {
+        for place in placesData.dropFirst() {  // first line is column names
             guard
                 place.count > 3,
                 let lat = Double(place[2]),
@@ -39,14 +49,17 @@ class MapViewController: UIViewController {
                 continue
             }
             let name = place[1]
+            let address = place[0]
 
             let coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             let annotation = MKPointAnnotation()
             annotation.coordinate = coord
             annotation.title = name
+            annotation.subtitle = address
             self.mapView.addAnnotation(annotation)
         }
     }
+
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -57,12 +70,26 @@ class MapViewController: UIViewController {
             locationManager.requestWhenInUseAuthorization()
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if
+            segue.identifier == "showAddressesSegue",
+            let nav = segue.destination as? UINavigationController,
+            let vc = nav.viewControllers.first as? AddressesViewController
+        {
+            vc.addresses = shownAnnotations
+        }
+
+    }
 }
 
 // MARK: Map Logic
 extension MapViewController {
     func showMapAnnotations(inside polygon: MKPolygon) {
         guard polygon.pointCount > 1 else { return } // empty polygon or single dot
+
+        var annotations = [MKAnnotation]()
+
         for annotation in mapView.annotations {
             let mapPoint = MKMapPoint(annotation.coordinate)
             let polygonRenderer = MKPolygonRenderer(polygon: polygon)
@@ -71,12 +98,17 @@ extension MapViewController {
             let mapCoordinateIsInPolygon = polygonRenderer.path.contains(polygonPoint)
 
             mapView.view(for: annotation)?.isHidden = !mapCoordinateIsInPolygon
+            if mapCoordinateIsInPolygon { annotations.append(annotation) }
         }
+
+        shownAnnotations = annotations
     }
 }
 
 // MARK: IBActions
 extension MapViewController {
+    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) {}
+
     @IBAction func actionDraw(_ sender: UIButton) {
         isDrawing = !isDrawing
         let tint = sender.tintColor

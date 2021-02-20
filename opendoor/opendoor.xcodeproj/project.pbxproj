@@ -17,6 +17,7 @@
 		30C287B625DF46CF00F3DBEC /* opendoorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287B525DF46CF00F3DBEC /* opendoorUITests.swift */; };
 		30C287D325E16E8300F3DBEC /* geocode_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30C287D225E16E8300F3DBEC /* geocode_data.csv */; };
 		30C287D825E16ED500F3DBEC /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287D725E16ED500F3DBEC /* Parser.swift */; };
+		30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287DC25E1903800F3DBEC /* AddressesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		30C287B725DF46CF00F3DBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30C287D225E16E8300F3DBEC /* geocode_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geocode_data.csv; sourceTree = "<group>"; };
 		30C287D725E16ED500F3DBEC /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		30C287DC25E1903800F3DBEC /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				30C2879325DF46CE00F3DBEC /* AppDelegate.swift */,
 				30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */,
 				30C2879725DF46CE00F3DBEC /* MapViewController.swift */,
+				30C287DC25E1903800F3DBEC /* AddressesViewController.swift */,
 				30C287D725E16ED500F3DBEC /* Parser.swift */,
 				30C2879925DF46CE00F3DBEC /* Main.storyboard */,
 				30C2879C25DF46CF00F3DBEC /* Assets.xcassets */,
@@ -267,6 +270,7 @@
 			files = (
 				30C287D825E16ED500F3DBEC /* Parser.swift in Sources */,
 				30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */,
+				30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */,
 				30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */,
 				30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */,
 			);
