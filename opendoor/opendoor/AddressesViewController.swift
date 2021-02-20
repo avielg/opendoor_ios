@@ -16,14 +16,38 @@ class AddressesViewController: UIViewController {
             self.navigationItem.title = "\(addresses.count) Addresses"
         }
     }
+
+    internal func presentShare(from item: UIBarButtonItem, then: @escaping ()->()) {
+        let rows: [ExcelRow] = addresses.compactMap {
+            guard
+                let name = $0.title as? String,
+                let address = $0.subtitle as? String
+            else {
+                print("Error: No values in \($0)")
+                return nil
+            }
+            return ExcelRow([ExcelCell(address), ExcelCell(name)])
+        }
+        let sheet = ExcelSheet(rows, name: "Properties")
+        let name = "philly_\(addresses.count)_addresses.xls"
+        ExcelExport.export([sheet], fileName: name) { url in
+            guard let path = url else { return }
+            self.shareData(path, from: item)
+            then()
+        }
+    }
+
+    private func shareData(_ dataPathToShare: URL, from item: UIBarButtonItem) {
+        let excelData = UIDocumentInteractionController(url: dataPathToShare)
+        excelData.presentOptionsMenu(from: item, animated: true)
+    }
 }
 
 // MARK: IBActions
 extension AddressesViewController {
     @IBAction func actionShare(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "TODO!", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Close", style: .default))
-        present(alert, animated: true, completion: nil)
+        sender.isEnabled = false // avoid "abuse" clicking
+        presentShare(from: sender) { sender.isEnabled = true }
     }
 }
 
