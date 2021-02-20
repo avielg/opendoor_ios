@@ -59,6 +59,23 @@ class MapViewController: UIViewController {
     }
 }
 
+// MARK: Map Logic
+extension MapViewController {
+    func showMapAnnotations(inside polygon: MKPolygon) {
+        guard polygon.pointCount > 1 else { return } // empty polygon or single dot
+        for annotation in mapView.annotations {
+            let mapPoint = MKMapPoint(annotation.coordinate)
+            let polygonRenderer = MKPolygonRenderer(polygon: polygon)
+
+            let polygonPoint = polygonRenderer.point(for: mapPoint)
+            let mapCoordinateIsInPolygon = polygonRenderer.path.contains(polygonPoint)
+
+            mapView.view(for: annotation)?.isHidden = !mapCoordinateIsInPolygon
+        }
+    }
+}
+
+// MARK: IBActions
 extension MapViewController {
     @IBAction func actionDraw(_ sender: UIButton) {
         isDrawing = !isDrawing
@@ -96,6 +113,7 @@ extension MapViewController {
         let polygon = MKPolygon(coordinates: &points, count: points.count)
         mapView.addOverlay(polygon)
         points = [] // Reset points
+        showMapAnnotations(inside: polygon)
     }
 }
 
