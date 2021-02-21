@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		306AEA9D25E1D97B0027B790 /* opendoor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = opendoor.entitlements; sourceTree = "<group>"; };
 		30C2879025DF46CE00F3DBEC /* opendoor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = opendoor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30C2879325DF46CE00F3DBEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		30C2879225DF46CE00F3DBEC /* opendoor */ = {
 			isa = PBXGroup;
 			children = (
+				306AEA9D25E1D97B0027B790 /* opendoor.entitlements */,
 				30C2879325DF46CE00F3DBEC /* AppDelegate.swift */,
 				30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */,
 				30C2879725DF46CE00F3DBEC /* MapViewController.swift */,
@@ -460,6 +462,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = opendoor/opendoor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 85JPBD89LM;
 				INFOPLIST_FILE = opendoor/Info.plist;
@@ -468,8 +471,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.avielgross.opendoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -480,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = opendoor/opendoor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 85JPBD89LM;
 				INFOPLIST_FILE = opendoor/Info.plist;
@@ -488,8 +495,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.avielgross.opendoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
