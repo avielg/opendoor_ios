@@ -8,6 +8,26 @@
 import UIKit
 import MapKit
 
+class PropertyAnnotation: MKPointAnnotation {
+    var property: [String]
+
+    init?(_ data: [String]) {
+        property = data
+        super.init()
+
+        guard
+            data.count > 3,
+            let lat = Double(data[2]),
+            let lon = Double(data[3])
+        else {
+            return nil
+        }
+        coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        title = data[1] // name
+        subtitle = data[0] // address
+    }
+}
+
 class MapViewController: UIViewController {
 
     var allAnnotations = [MKAnnotation]()
@@ -55,24 +75,12 @@ class MapViewController: UIViewController {
         let placesData = Parser.parseCSV(named: "geocode_data") ?? []
         print("GEO: \(placesData.count) places")
 
-        for place in placesData.dropFirst() {  // first line is column names
-            guard
-                place.count > 3,
-                let lat = Double(place[2]),
-                let lon = Double(place[3])
-            else {
-                continue
-            }
-            let name = place[1]
-            let address = place[0]
+        placesData
+            .dropFirst()  // first line is column names
+            .compactMap(PropertyAnnotation.init)
+            .forEach{ allAnnotations.append($0) }
+        print("MAP: \(allAnnotations.count) annotations parsed from places")
 
-            let coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coord
-            annotation.title = name
-            annotation.subtitle = address
-            allAnnotations.append(annotation)
-        }
         self.shownAnnotations = allAnnotations
     }
 
