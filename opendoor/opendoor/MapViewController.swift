@@ -28,6 +28,21 @@ class PropertyAnnotation: MKPointAnnotation {
     }
 }
 
+extension PropertyAnnotation: VisualAnnotation {
+    var iconName: String? {
+        let units = arc4random_uniform(2)
+        return units != 0 ? "building.2.crop.circle" : "house.circle"
+    }
+    var color: UIColor {
+        if iconName == "house.circle" { return .systemGray }
+        switch arc4random_uniform(3) {
+        case 0: return .systemYellow
+        case 1: return .systemOrange
+        default: return .systemRed
+        }
+    }
+}
+
 class MapViewController: UIViewController {
 
     var allAnnotations = [MKAnnotation]()
@@ -40,6 +55,10 @@ class MapViewController: UIViewController {
 
             mapView.removeAnnotations(mapView.annotations)
             mapView.addAnnotations(shownAnnotations)
+
+            mapView.pointOfInterestFilter = .some(MKPointOfInterestFilter(including: [
+                .airport, .museum, .park, .school, .zoo
+            ]))
 
             buttonFoundAddresses.isHidden = shownAnnotations.isEmpty
             buttonFoundAddresses.setTitle("\(shownAnnotations.count) Addresses", for: .normal)
@@ -179,6 +198,16 @@ extension MapViewController {
 }
 
 extension MapViewController: MKMapViewDelegate {
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let propertyAnnotation = annotation as? PropertyAnnotation else { return nil }
+        if let mView = mapView.dequeueReusableAnnotationView(withIdentifier: PropertyAnnotationView.reuseIdentifier) as? PropertyAnnotationView {
+            mView.annotation = propertyAnnotation
+            mView.setupIcon(propertyAnnotation)
+            return mView
+        }
+        return PropertyAnnotationView(propertyAnnotation: propertyAnnotation)
+    }
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
