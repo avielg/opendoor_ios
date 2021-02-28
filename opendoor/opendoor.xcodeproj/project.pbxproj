@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */; };
+		30AF444625E9DD5200AE79AC /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */; };
+		30AF444B25EB4D0A00AE79AC /* odin.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30AF444A25EB4D0A00AE79AC /* odin.csv */; };
 		30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2879325DF46CE00F3DBEC /* AppDelegate.swift */; };
 		30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */; };
 		30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2879725DF46CE00F3DBEC /* MapViewController.swift */; };
@@ -42,6 +44,8 @@
 /* Begin PBXFileReference section */
 		306AEA9D25E1D97B0027B790 /* opendoor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = opendoor.entitlements; sourceTree = "<group>"; };
 		30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAnnotationView.swift; sourceTree = "<group>"; };
+		30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
+		30AF444A25EB4D0A00AE79AC /* odin.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = odin.csv; sourceTree = "<group>"; };
 		30C2879025DF46CE00F3DBEC /* opendoor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = opendoor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30C2879325DF46CE00F3DBEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 			children = (
 				30C6170E25E1BF4C00BBE213 /* Dependencies */,
 				30C287D225E16E8300F3DBEC /* geocode_data.csv */,
+				30AF444A25EB4D0A00AE79AC /* odin.csv */,
 				30C2879225DF46CE00F3DBEC /* opendoor */,
 				30C287A925DF46CF00F3DBEC /* opendoorTests */,
 				30C287B425DF46CF00F3DBEC /* opendoorUITests */,
@@ -118,6 +123,7 @@
 				30C2879725DF46CE00F3DBEC /* MapViewController.swift */,
 				30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */,
 				30C287DC25E1903800F3DBEC /* AddressesViewController.swift */,
+				30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */,
 				30C287D725E16ED500F3DBEC /* Parser.swift */,
 				30C2879925DF46CE00F3DBEC /* Main.storyboard */,
 				30C2879C25DF46CF00F3DBEC /* Assets.xcassets */,
@@ -258,6 +264,7 @@
 			files = (
 				30C287A025DF46CF00F3DBEC /* LaunchScreen.storyboard in Resources */,
 				30C2879D25DF46CF00F3DBEC /* Assets.xcassets in Resources */,
+				30AF444B25EB4D0A00AE79AC /* odin.csv in Resources */,
 				30C2879B25DF46CE00F3DBEC /* Main.storyboard in Resources */,
 				30C287D325E16E8300F3DBEC /* geocode_data.csv in Resources */,
 			);
@@ -288,6 +295,7 @@
 				30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */,
 				30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */,
 				30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */,
+				30AF444625E9DD5200AE79AC /* PropertyDetailViewController.swift in Sources */,
 				30C6171025E1BF5A00BBE213 /* ExcelExport.swift in Sources */,
 				30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */,
 				30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */,

@@ -8,8 +8,12 @@
 import UIKit
 import MapKit
 
+let csvFileName = "odin"  // "geocode_data"
+
 class PropertyAnnotation: MKPointAnnotation {
     var property: [String]
+
+    var numOfUnits: Int { return Int(property[4]) ?? 1 }
 
     init?(_ data: [String]) {
         property = data
@@ -23,22 +27,24 @@ class PropertyAnnotation: MKPointAnnotation {
             return nil
         }
         coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        title = data[1] // name
-        subtitle = data[0] // address
+        title = data[0] // address
+        subtitle = numOfUnits == 1 ? "Single Family" : "Multi Family: \(numOfUnits) units"
     }
 }
 
 extension PropertyAnnotation: VisualAnnotation {
     var iconName: String? {
-        let units = arc4random_uniform(2)
-        return units != 0 ? "building.2.crop.circle" : "house.circle"
+        return numOfUnits > 1 ? "building.2.crop.circle" : "house.circle"
     }
     var color: UIColor {
-        if iconName == "house.circle" { return .systemGray }
-        switch arc4random_uniform(3) {
-        case 0: return .systemYellow
-        case 1: return .systemOrange
-        default: return .systemRed
+        switch numOfUnits {
+        case ...1: return .systemGray
+        case 2...4: return .systemYellow
+        case 5...9: return .systemOrange
+        case 10...: return .systemRed
+        default:
+            assertionFailure()
+            return .systemGray
         }
     }
 }
@@ -91,7 +97,7 @@ class MapViewController: UIViewController {
 
         buttonFoundAddresses.setTitleColor(buttonFoundAddresses.tintColor, for: .normal)
 
-        let placesData = Parser.parseCSV(named: "geocode_data") ?? []
+        let placesData = Parser.parseCSV(named: csvFileName) ?? []
         print("GEO: \(placesData.count) places")
 
         placesData
@@ -233,6 +239,20 @@ extension MapViewController: MKMapViewDelegate {
             latitudinalMeters: distance,
             longitudinalMeters: distance)
         mapView.setRegion(mapView.regionThatFits(region), animated: true)
+    }
+
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard
+            let propertyView = view as? PropertyAnnotationView,
+            let propertyAnnotation = propertyView.annotation as? PropertyAnnotation
+        else {
+            return
+        }
+        let vc = PropertyDetailViewController()
+        vc.modalPresentationStyle = .popover
+        vc.popoverPresentationController?.sourceView = view
+        vc.data = propertyAnnotation.property
+        self.present(vc, animated: true, completion: nil)
     }
 
 }
