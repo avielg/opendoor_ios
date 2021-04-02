@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30396C7F2617846A0023C121 /* PropertyAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396C7E2617846A0023C121 /* PropertyAnnotation.swift */; };
 		30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */; };
 		30AF444625E9DD5200AE79AC /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */; };
 		30AF444B25EB4D0A00AE79AC /* odin.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30AF444A25EB4D0A00AE79AC /* odin.csv */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30396C7E2617846A0023C121 /* PropertyAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAnnotation.swift; sourceTree = "<group>"; };
 		306AEA9D25E1D97B0027B790 /* opendoor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = opendoor.entitlements; sourceTree = "<group>"; };
 		30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAnnotationView.swift; sourceTree = "<group>"; };
 		30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30396C7A2617845D0023C121 /* Map Screen */ = {
+			isa = PBXGroup;
+			children = (
+				30C2879725DF46CE00F3DBEC /* MapViewController.swift */,
+				30396C7E2617846A0023C121 /* PropertyAnnotation.swift */,
+			);
+			path = "Map Screen";
+			sourceTree = "<group>";
+		};
 		30C2878725DF46CE00F3DBEC = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +131,7 @@
 				306AEA9D25E1D97B0027B790 /* opendoor.entitlements */,
 				30C2879325DF46CE00F3DBEC /* AppDelegate.swift */,
 				30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */,
-				30C2879725DF46CE00F3DBEC /* MapViewController.swift */,
+				30396C7A2617845D0023C121 /* Map Screen */,
 				30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */,
 				30C287DC25E1903800F3DBEC /* AddressesViewController.swift */,
 				30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */,
@@ -293,6 +304,7 @@
 			files = (
 				30C287D825E16ED500F3DBEC /* Parser.swift in Sources */,
 				30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */,
+				30396C7F2617846A0023C121 /* PropertyAnnotation.swift in Sources */,
 				30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */,
 				30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */,
 				30AF444625E9DD5200AE79AC /* PropertyDetailViewController.swift in Sources */,

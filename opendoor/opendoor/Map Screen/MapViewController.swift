@@ -10,42 +10,11 @@ import MapKit
 
 let csvFileName = "odin"  // "geocode_data"
 
-class PropertyAnnotation: MKPointAnnotation {
-    var property: [String]
-
-    var numOfUnits: Int { return Int(property[4]) ?? 1 }
-
-    init?(_ data: [String]) {
-        property = data
-        super.init()
-
-        guard
-            data.count > 3,
-            let lat = Double(data[2]),
-            let lon = Double(data[3])
-        else {
-            return nil
-        }
-        coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        title = data[0] // address
-        subtitle = numOfUnits == 1 ? "Single Family" : "Multi Family: \(numOfUnits) units"
-    }
-}
-
-extension PropertyAnnotation: VisualAnnotation {
-    var iconName: String? {
-        return numOfUnits > 1 ? "building.2.crop.circle" : "house.circle"
-    }
-    var color: UIColor {
-        switch numOfUnits {
-        case ...1: return .systemGray
-        case 2...4: return .systemYellow
-        case 5...9: return .systemOrange
-        case 10...: return .systemRed
-        default:
-            assertionFailure()
-            return .systemGray
-        }
+class ImageAndTitleButton: UIButton {
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setTitleColor(tintColor, for: .normal)
+        layer.cornerRadius = 12
     }
 }
 
@@ -90,12 +59,11 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var buttonDraw: UIButton!
     @IBOutlet weak var buttonFoundAddresses: UIButton!
+    @IBOutlet weak var buttonDataSources: UIButton!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        buttonFoundAddresses.setTitleColor(buttonFoundAddresses.tintColor, for: .normal)
 
         let placesData = Parser.parseCSV(named: csvFileName) ?? []
         print("GEO: \(placesData.count) places")
