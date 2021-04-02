@@ -7,8 +7,7 @@
 
 import UIKit
 import MapKit
-
-let csvFileName = "odin"  // "geocode_data"
+import Combine
 
 class ImageAndTitleButton: UIButton {
     required init?(coder: NSCoder) {
@@ -20,7 +19,24 @@ class ImageAndTitleButton: UIButton {
 
 class MapViewController: UIViewController {
 
-    var allAnnotations = [MKAnnotation]()
+    var dataSourcesAssignCancellable: AnyCancellable?
+    var dataSources = DataProvider.shared.dataSources {
+        didSet {
+            let annotations = dataSources.map{ $0.points }.reduce([], +).map{ $0.annotation }
+            allAnnotations.append(contentsOf: annotations)
+        }
+    }
+
+    /// All available annotations.
+    var allAnnotations = [MKAnnotation]() {
+        didSet {
+            // Resets the annotations shown on the map
+            self.shownAnnotations = self.allAnnotations
+        }
+    }
+
+    /// Currently rendered annotations. When drawing a certain area
+    /// of the map, these will be a subset of `allAnnotations`.
     var shownAnnotations = [MKAnnotation]() {
         didSet {
             guard !shownAnnotations.elementsEqual(oldValue, by: {
@@ -64,19 +80,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let placesData = Parser.parseCSV(named: csvFileName) ?? []
-        print("GEO: \(placesData.count) places")
-
-        placesData
-            .dropFirst()  // first line is column names
-            .compactMap(PropertyAnnotation.init)
-            .forEach{ allAnnotations.append($0) }
-        print("MAP: \(allAnnotations.count) annotations parsed from places")
-
-        self.shownAnnotations = allAnnotations
+        dataSourcesAssignCancellable = DataProvider.shared.$dataSources.assign(to: \.dataSources, on: self)
     }
-
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

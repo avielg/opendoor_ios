@@ -12,6 +12,8 @@
 		30396C8A2617877B0023C121 /* DataSourceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396C892617877B0023C121 /* DataSourceItem.swift */; };
 		30396C8F261787F60023C121 /* DataSourceItem+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396C8E261787F60023C121 /* DataSourceItem+Display.swift */; };
 		30396C9A26178CD00023C121 /* DataSourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396C9926178CD00023C121 /* DataSourceDetailViewController.swift */; };
+		30396CA226179E9F0023C121 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396CA126179E9F0023C121 /* DataProvider.swift */; };
+		30396CA72617AFB30023C121 /* CSVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396CA62617AFB30023C121 /* CSVData.swift */; };
 		30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */; };
 		30AF444625E9DD5200AE79AC /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */; };
 		30AF444B25EB4D0A00AE79AC /* odin.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30AF444A25EB4D0A00AE79AC /* odin.csv */; };
@@ -52,6 +54,8 @@
 		30396C892617877B0023C121 /* DataSourceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceItem.swift; sourceTree = "<group>"; };
 		30396C8E261787F60023C121 /* DataSourceItem+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSourceItem+Display.swift"; sourceTree = "<group>"; };
 		30396C9926178CD00023C121 /* DataSourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceDetailViewController.swift; sourceTree = "<group>"; };
+		30396CA126179E9F0023C121 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		30396CA62617AFB30023C121 /* CSVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVData.swift; sourceTree = "<group>"; };
 		306AEA9D25E1D97B0027B790 /* opendoor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = opendoor.entitlements; sourceTree = "<group>"; };
 		30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAnnotationView.swift; sourceTree = "<group>"; };
 		30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +110,9 @@
 			children = (
 				30C2879725DF46CE00F3DBEC /* MapViewController.swift */,
 				30396C7E2617846A0023C121 /* PropertyAnnotation.swift */,
+				30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */,
+				30C287DC25E1903800F3DBEC /* AddressesViewController.swift */,
+				30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */,
 			);
 			path = "Map Screen";
 			sourceTree = "<group>";
@@ -147,19 +154,18 @@
 		30C2879225DF46CE00F3DBEC /* opendoor */ = {
 			isa = PBXGroup;
 			children = (
+				30396C7A2617845D0023C121 /* Map Screen */,
 				30396C832617865A0023C121 /* Data Sources Screen */,
 				306AEA9D25E1D97B0027B790 /* opendoor.entitlements */,
 				30C2879325DF46CE00F3DBEC /* AppDelegate.swift */,
 				30C2879525DF46CE00F3DBEC /* SceneDelegate.swift */,
-				30396C7A2617845D0023C121 /* Map Screen */,
-				30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */,
-				30C287DC25E1903800F3DBEC /* AddressesViewController.swift */,
-				30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */,
 				30C287D725E16ED500F3DBEC /* Parser.swift */,
 				30C2879925DF46CE00F3DBEC /* Main.storyboard */,
 				30C2879C25DF46CF00F3DBEC /* Assets.xcassets */,
 				30C2879E25DF46CF00F3DBEC /* LaunchScreen.storyboard */,
 				30C287A125DF46CF00F3DBEC /* Info.plist */,
+				30396CA126179E9F0023C121 /* DataProvider.swift */,
+				30396CA62617AFB30023C121 /* CSVData.swift */,
 			);
 			path = opendoor;
 			sourceTree = "<group>";
@@ -326,12 +332,14 @@
 				30C2879825DF46CE00F3DBEC /* MapViewController.swift in Sources */,
 				30396C8A2617877B0023C121 /* DataSourceItem.swift in Sources */,
 				30396C7F2617846A0023C121 /* PropertyAnnotation.swift in Sources */,
+				30396CA72617AFB30023C121 /* CSVData.swift in Sources */,
 				30396C9A26178CD00023C121 /* DataSourceDetailViewController.swift in Sources */,
 				30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */,
 				30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */,
 				30AF444625E9DD5200AE79AC /* PropertyDetailViewController.swift in Sources */,
 				30C6171025E1BF5A00BBE213 /* ExcelExport.swift in Sources */,
 				30396C85261786740023C121 /* DataSourcesListViewController.swift in Sources */,
+				30396CA226179E9F0023C121 /* DataProvider.swift in Sources */,
 				30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */,
 				30396C8F261787F60023C121 /* DataSourceItem+Display.swift in Sources */,
 				30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */,
@@ -514,7 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 85JPBD89LM;
 				INFOPLIST_FILE = opendoor/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -539,7 +547,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 85JPBD89LM;
 				INFOPLIST_FILE = opendoor/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -251,6 +251,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="hhh-4m-njw"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="barButtonItemAdd" destination="hhh-4m-njw" id="g73-oJ-oVB"/>
                         <outlet property="collectionView" destination="k4E-wf-Rnm" id="f42-lp-4Qd"/>
                         <segue destination="Nhp-t6-G3U" kind="show" identifier="showDataSource" id="iLZ-xr-OLs"/>
                     </connections>

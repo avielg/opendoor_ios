@@ -22,6 +22,16 @@ class Parser {
         }
     }
 
+    static func openCSV(url: URL) -> String? {
+        do {
+            let contents = try String(contentsOf: url, encoding: .utf8)
+            return contents
+        } catch {
+            print("File Read Error for file at \(url)\nError: \(error)")
+            return nil
+        }
+    }
+
     private static func getValues(for line: String) -> [String]? {
         guard line != "" else { return nil }
 
@@ -68,6 +78,12 @@ class Parser {
 
     static func parseCSV(named name: String) -> [[String]]? {
         return openCSV(fileName: name, fileType: "csv")?
+            .components(separatedBy: NSCharacterSet.newlines)
+            .compactMap(getValues(for:))
+    }
+
+    static func parseCSV(at url: URL) -> [[String]]? {
+        return openCSV(url: url)?
             .components(separatedBy: NSCharacterSet.newlines)
             .compactMap(getValues(for:))
     }
