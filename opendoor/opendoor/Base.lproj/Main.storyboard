@@ -197,42 +197,6 @@
             </objects>
             <point key="canvasLocation" x="1023" y="-263"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="1Gt-BA-ueJ">
-            <objects>
-                <tableViewController id="2OK-M6-vfZ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dlo-Dq-QAI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="uUl-wK-xtj">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uUl-wK-xtj" id="sya-7j-ceP">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="2OK-M6-vfZ" id="ZeA-1p-3dG"/>
-                            <outlet property="delegate" destination="2OK-M6-vfZ" id="rlZ-yh-j5K"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ae5-Rt-0vN">
-                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="v7Y-e7-28U">
-                            <connections>
-                                <segue destination="WUU-q2-ocb" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="0s7-S9-jqE"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OeR-yJ-oTL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="WUU-q2-ocb" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1871" y="436"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="uVe-DD-d2a">
             <objects>
@@ -242,18 +206,104 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2OK-M6-vfZ" kind="relationship" relationship="rootViewController" id="fA8-93-XL6"/>
+                        <segue destination="o74-04-v5q" kind="relationship" relationship="rootViewController" id="XHo-CW-oTw"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kt-CU-Y5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1022" y="436"/>
         </scene>
+        <!--Data Sources-->
+        <scene sceneID="3LD-cX-cwG">
+            <objects>
+                <viewController id="o74-04-v5q" customClass="DataSourcesListViewController" customModule="opendoor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cLN-ab-fqs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="k4E-wf-Rnm">
+                                <rect key="frame" x="0.0" y="108" width="414" height="700"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TrR-DZ-8Fk">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ICz-0N-J66"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ICz-0N-J66" firstAttribute="bottom" secondItem="k4E-wf-Rnm" secondAttribute="bottom" id="2OF-lQ-lwi"/>
+                            <constraint firstItem="ICz-0N-J66" firstAttribute="trailing" secondItem="k4E-wf-Rnm" secondAttribute="trailing" id="4Sc-4I-4AW"/>
+                            <constraint firstItem="k4E-wf-Rnm" firstAttribute="leading" secondItem="ICz-0N-J66" secondAttribute="leading" id="Oif-et-kuO"/>
+                            <constraint firstItem="k4E-wf-Rnm" firstAttribute="top" secondItem="ICz-0N-J66" secondAttribute="top" id="e33-Jx-1KY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Data Sources" id="9xe-xx-9dI">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="sBH-0V-BVX">
+                            <connections>
+                                <segue destination="Qbz-rA-pRt" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="ZxH-Cx-pUC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="hhh-4m-njw"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="k4E-wf-Rnm" id="f42-lp-4Qd"/>
+                        <segue destination="Nhp-t6-G3U" kind="show" identifier="showDataSource" id="iLZ-xr-OLs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tur-hT-8ur" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Qbz-rA-pRt" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1869.5652173913045" y="435.9375"/>
+        </scene>
+        <!--Data Source Detail-->
+        <scene sceneID="ZWN-xP-Zro">
+            <objects>
+                <viewController title="Data Source Detail" id="Nhp-t6-G3U" customClass="DataSourceDetailViewController" customModule="opendoor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nio-IO-nBf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-21-SyI">
+                                <rect key="frame" x="0.0" y="108" width="414" height="700"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mey-pW-nb6">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IaQ-TE-Bro"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IaQ-TE-Bro" firstAttribute="top" secondItem="4fd-21-SyI" secondAttribute="top" id="6RW-Uk-gH8"/>
+                            <constraint firstItem="IaQ-TE-Bro" firstAttribute="bottom" secondItem="4fd-21-SyI" secondAttribute="bottom" id="CRi-M3-Hta"/>
+                            <constraint firstItem="IaQ-TE-Bro" firstAttribute="trailing" secondItem="4fd-21-SyI" secondAttribute="trailing" id="DTz-mO-Og0"/>
+                            <constraint firstItem="4fd-21-SyI" firstAttribute="leading" secondItem="IaQ-TE-Bro" secondAttribute="leading" id="I2y-bh-ORY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Data Source" id="Waj-o5-Coj"/>
+                    <connections>
+                        <outlet property="collectionView" destination="4fd-21-SyI" id="bVj-Xw-p1o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OUs-A3-V0c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2708.6956521739135" y="435.9375"/>
+        </scene>
     </scenes>
     <resources>
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="pencil.and.outline" catalog="system" width="128" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="tray.2" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
