@@ -85,7 +85,7 @@ class MapViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+        if locationManager.authorizationStatus == .authorizedWhenInUse {
             locationManager.startUpdatingLocation()
             locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         } else {

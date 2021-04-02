@@ -50,7 +50,7 @@ class AddressesViewController: UIViewController {
     }
 
     private func saveFile(_ url: URL, from item: UIBarButtonItem) {
-        let controller = UIDocumentPickerViewController(url: url, in: .exportToService)
+        let controller = UIDocumentPickerViewController(forExporting: [url])
         present(controller, animated: true, completion: nil)
     }
 }
