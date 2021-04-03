@@ -22,23 +22,9 @@ protocol DataSource {
 }
 
 class DataProvider {
-    typealias DataSourcesHandler = ([DataSource]) -> Void
-
     static var shared = DataProvider()
 
-    @Published var dataSources: [DataSource] = [] {
-        didSet {
-            for handler in dataSourceChangeHandlers {
-                handler(dataSources)
-            }
-        }
-    }
-
-    var dataSourceChangeHandlers: [DataSourcesHandler] = []
-
-    func handleDataSourceChange(_ handler: @escaping DataSourcesHandler) {
-        dataSourceChangeHandlers.append(handler)
-    }
+    @Published var dataSources: [DataSource] = []
 
     func add(source: DataSource) {
         dataSources.append(source)
