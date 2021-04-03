@@ -15,6 +15,10 @@ protocol DataPoint {
 protocol DataSource {
     var item: DataSourceItem { get }
     var points: [DataPoint] { get }
+
+    // Configuration UI
+    var configurations: [AnyHashable] { get }
+    func content(for dataConfigIndex: Int, from contentConfig: UIListContentConfiguration) -> UIListContentConfiguration
 }
 
 class DataProvider {

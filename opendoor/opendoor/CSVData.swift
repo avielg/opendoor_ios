@@ -18,7 +18,52 @@ class CSVData: DataSource {
     var points: [DataPoint] = []
 
     var rawData: [[String]]
+    var titleLinesCount = 0
 
+    struct Column: Hashable {
+        enum Usage {
+            case lat, lon, address, numOfUnits
+            var icon: UIImage {
+                switch self {
+                case .lon: return UIImage(systemName: "arrow.up.arrow.down.square")!
+                case .lat: return UIImage(systemName: "arrow.left.arrow.right.square")!
+                case .address: return UIImage(systemName: "signpost.left")!
+                case .numOfUnits: return UIImage(systemName: "number.square")!
+                }
+            }
+            static func possibleUsage(for title: String) -> Usage? {
+                let startOrEndWith: (String)->Regex = {
+                    return Regex(stringLiteral: "^(\($0))|(\($0))$")
+                }
+                switch title.lowercased() {
+                case startOrEndWith("lat(itude)?"): return .lat
+                case startOrEndWith("lon(g)?(itude)?"): return .lon
+                case startOrEndWith("(street)?[\\s_-]?address"): return .address
+                case startOrEndWith("num(ber)?[\\s_-]?of[\\s_-]?unit(s)?"): return .numOfUnits
+                default: return nil
+                }
+            }
+        }
+        var title: String
+        var usage: Usage?
+        var icon: UIImage? { usage?.icon ?? UIImage(systemName: "questionmark.square.dashed")?.withAlphaComponent(0.5) }
+    }
+    var columns: [Column] = []
+    var configurations: [AnyHashable] { return columns }
+
+    func content(for dataConfigIndex: Int, from contentConfig: UIListContentConfiguration) -> UIListContentConfiguration {
+        guard columns.count > dataConfigIndex else { return contentConfig }
+        let column = columns[dataConfigIndex]
+        var contentConfig = contentConfig
+        contentConfig.image = column.icon
+        contentConfig.imageProperties.maximumSize.height = 20
+        contentConfig.text = column.title
+
+        let contentRows = rawData.dropFirst(titleLinesCount) // remove title
+        let exampleRows = contentRows.compactMap { $0[dataConfigIndex] }[0..<min(contentRows.count, 3)] // 3 first rows (or less)
+        contentConfig.secondaryText = exampleRows.joined(separator: "\n") + "..."
+        return contentConfig
+    }
 
     /// Creates a CSV type data source from a url of a csv file.
     /// - Parameters:
@@ -30,14 +75,55 @@ class CSVData: DataSource {
         self.item = item
 
         rawData = Parser.parseCSV(at: url) ?? []
+        self.titleLinesCount = titleLinesCount
+
+        columns = rawData.first?.map { Column(title: $0, usage: Column.Usage.possibleUsage(for: $0)) } ?? []
 
         print("GEO: \(rawData.count) places")
 
         rawData
-            .dropFirst(titleLinesCount)
+            .dropFirst(self.titleLinesCount)
             .compactMap(PropertyAnnotation.init)
             .map(PropertyDataPoint.init(annotation:))
             .forEach { points.append($0) }
         print("MAP: \(points.count) annotations parsed from places")
     }
+}
+
+struct Regex: ExpressibleByStringLiteral, Equatable {
+
+    fileprivate let expression: NSRegularExpression
+
+    init(stringLiteral: String) {
+        do {
+            self.expression = try NSRegularExpression(pattern: stringLiteral, options: [])
+        } catch {
+            print("Failed to parse (stringLiteral) as a regular expression")
+            self.expression = try! NSRegularExpression(pattern: ".*", options: [])
+        }
+    }
+
+    fileprivate func match(_ input: String) -> Bool {
+        let result = expression.rangeOfFirstMatch(
+            in: input,
+            options: [],
+            range: NSRange(input.startIndex..., in: input))
+        return !NSEqualRanges(result, NSMakeRange(NSNotFound, 0))
+    }
+}
+
+extension Regex {
+    static func ~=(pattern: Regex, value: String) -> Bool {
+        return pattern.match(value)
+    }
+}
+
+extension UIImage {
+  func withAlphaComponent(_ alpha: CGFloat) -> UIImage? {
+    UIGraphicsBeginImageContextWithOptions(size, false, scale)
+    defer { UIGraphicsEndImageContext() }
+
+    draw(at: .zero, blendMode: .normal, alpha: alpha)
+    return UIGraphicsGetImageFromCurrentImageContext()
+  }
 }

@@ -59,7 +59,7 @@ class DataSourcesListViewController: UIViewController {
             let detailVC = segue.destination as? DataSourceDetailViewController,
             let item = sender as? DataSourceItem
         {
-            detailVC.item = item
+            detailVC.data = data.first { $0.item == item }
         }
     }
 }
