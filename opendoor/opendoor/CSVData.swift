@@ -58,7 +58,12 @@ class CSVData: DataSource {
         contentConfig.text = column.title
 
         let contentRows = rawData.dropFirst(titleLinesCount) // remove title
-        let exampleRows = contentRows.compactMap { $0[dataConfigIndex] }[0..<min(contentRows.count, 3)] // 3 first rows (or less)
+        let exampleRows = contentRows
+            .lazy                                       // don't iterate all rows
+            .filter {$0.count > dataConfigIndex }       // rows with value for the column
+            .map { $0[dataConfigIndex] }                // get the value
+            .filter{ !$0.isEmpty }                      // drop if empty string
+            .prefix(3)                                  // first (or less) 3 rows
         contentConfig.secondaryText = exampleRows.joined(separator: "\n") + "..."
         return contentConfig
     }

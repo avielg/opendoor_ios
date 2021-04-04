@@ -57,9 +57,11 @@ extension CLLocationCoordinate2D: Equatable {
 
 extension PropertyDataContainer {
     var numOfUnitsLabel: String {
-        numOfUnits == 1
-            ? "Single Family"
-            : "Multi Family: \(numOfUnits.map(String.init) ?? "unknown number of ") units"
+        switch numOfUnits ?? 0 {
+        case 1: return "Single Family"
+        case let n where n > 1: return "Multi Family: \(n) units"
+        default: return "Uunknown number of units"
+        }
     }
 }
 
@@ -80,7 +82,11 @@ class PropertyAnnotation: MKPointAnnotation {
 
 extension PropertyAnnotation: VisualAnnotation {
     var iconName: String? {
-        return numOfUnits ?? 0 > 1 ? "building.2.crop.circle" : "house.circle"
+        switch numOfUnits ?? 0 {
+        case 1: return "house.circle"
+        case let n where n > 1: return "building.2.crop.circle"
+        default: return "questionmark.circle"
+        }
     }
     var color: UIColor {
         switch numOfUnits ?? 0 {
