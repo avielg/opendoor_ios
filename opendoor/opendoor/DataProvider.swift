@@ -7,12 +7,16 @@
 
 import Foundation
 import MapKit
+import CryptoKit
 
 protocol DataPoint {
     var annotation: MKAnnotation { get }
 }
 
 protocol DataSource {
+    typealias DataSourceHash = SHA512Digest
+    var hash: DataSourceHash { get }
+
     var item: DataSourceItem { get }
     var points: [DataPoint] { get }
 

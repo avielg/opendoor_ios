@@ -7,12 +7,14 @@
 
 import Foundation
 import MapKit
+import CryptoKit
 
 struct PropertyDataPoint: DataPoint {
     var annotation: MKAnnotation
 }
 
 class CSVData: DataSource {
+    var hash: DataSourceHash
 
     var item: DataSourceItem
     var points: [DataPoint] = []
@@ -71,7 +73,8 @@ class CSVData: DataSource {
     ///   - url: File path URL of the csv file
     ///   - titleLinesCount: Number of lines that are titles or column titles
     ///                      (anything that is not the actual data) to drop.
-    required init?(_ item: DataSourceItem, url: URL, titleLinesCount: Int) {
+    required init?(_ item: DataSourceItem, url: URL, hash: DataSourceHash, titleLinesCount: Int) {
+        self.hash = hash
         self.item = item
 
         rawData = Parser.parseCSV(at: url) ?? []

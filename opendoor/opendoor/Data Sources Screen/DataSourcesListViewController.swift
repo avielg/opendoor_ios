@@ -8,6 +8,7 @@
 import UIKit
 import UniformTypeIdentifiers
 import Combine
+import CryptoKit
 
 class DataSourcesListViewController: UIViewController {
 
@@ -109,14 +110,54 @@ extension DataSourcesListViewController {
 // MARK: - DocumentPicker Delegate
 extension DataSourcesListViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        let dataSources = urls
-            .compactMap {
-                CSVData(
-                    DataSourceItem(name: $0.lastPathComponent, note: "Imported \(Date())", type: .fileCSV),
-                    url: $0,
-                    titleLinesCount: 1)
+        func errorAlert(message: String) {
+            let controller = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            self.present(controller, animated: true, completion: nil)
+        }
+
+        var dataSources = [CSVData]()
+
+        for url in urls {
+            guard
+                FileManager.default.fileExists(atPath: url.path)
+            else {
+                errorAlert(message: "Can't find file at path, did you move or delete it?")
+                continue
             }
-        DataProvider.shared.add(sources: dataSources)
+
+            let fileData: Data
+            do {
+                fileData = try Data(contentsOf: url)
+            } catch {
+                errorAlert(message: error.localizedDescription)
+                continue
+            }
+
+            let hash = SHA512.hash(data: fileData)
+            guard
+                !DataProvider.shared.dataSources.contains(where: { source in source.hash == hash })
+            else {
+                errorAlert(message: "Same data source already exists. Did you already add this file?")
+                continue
+            }
+
+            guard
+                let csvData = CSVData(
+                    DataSourceItem(name: url.lastPathComponent, note: "Imported \(Date())", type: .fileCSV),
+                    url: url,
+                    hash: hash,
+                    titleLinesCount: 1)
+            else {
+                errorAlert(message: "Can't parse file, is it a valid CSV file?")
+                continue
+            }
+            dataSources.append(csvData)
+        }
+
+        if !dataSources.isEmpty {
+            DataProvider.shared.add(sources: dataSources)
+        }
     }
 }
 
