@@ -8,34 +8,82 @@
 import UIKit
 import MapKit
 
+protocol PropertyDataContainer {
+    var coordinate: CLLocationCoordinate2D? { get }
+    var address: String? { get }
+    var numOfUnits: Int? { get }
+}
+
+class PropertyDataPointsList: PropertyDataContainer {
+
+    /// List of points, guaranteed not empty
+    private(set) var list: [PropertyDataPoint]
+    lazy var annotation = PropertyAnnotation(self)
+
+    required init?(_ points: [PropertyDataPoint]) {
+        guard !points.isEmpty else { return nil }
+        list = points
+    }
+
+    func append(point: PropertyDataPoint) {
+        list.append(point)
+    }
+
+    var coordinate: CLLocationCoordinate2D? { list.lazy.compactMap({ $0.coordinate }).first }
+    var address: String? { list.lazy.compactMap { $0.address }.first }
+    var numOfUnits: Int? { list.lazy.compactMap { $0.numOfUnits }.first}
+}
+
+struct PropertyDataPoint: PropertyDataContainer {
+    // Column to data in sheet based source, key value in json based source
+    var rawData: [AnyHashable : AnyHashable]
+
+    var coordinate: CLLocationCoordinate2D?
+    var address: String?
+    var numOfUnits: Int?
+
+    var dataSourceItem: DataSourceItem?
+
+    static func isSameProperty(_ lhs: PropertyDataPoint, _ rhs: PropertyDataPoint) -> Bool {
+        return lhs.coordinate == rhs.coordinate || lhs.address == rhs.address
+    }
+}
+
+extension CLLocationCoordinate2D: Equatable {
+    static public func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+}
+
+extension PropertyDataContainer {
+    var numOfUnitsLabel: String {
+        numOfUnits == 1
+            ? "Single Family"
+            : "Multi Family: \(numOfUnits.map(String.init) ?? "unknown number of ") units"
+    }
+}
+
 class PropertyAnnotation: MKPointAnnotation {
-    var property: [String]
+    var numOfUnits: Int?
 
-    var numOfUnits: Int { return Int(property[4]) ?? 1 }
+    init?(_ dataPoints: PropertyDataPointsList) {
+        numOfUnits = dataPoints.numOfUnits
 
-    init?(_ data: [String]) {
-        property = data
+        guard let coord = dataPoints.coordinate else { return nil }
         super.init()
 
-        guard
-            data.count > 3,
-            let lat = Double(data[2]),
-            let lon = Double(data[3])
-        else {
-            return nil
-        }
-        coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        title = data[0] // address
-        subtitle = numOfUnits == 1 ? "Single Family" : "Multi Family: \(numOfUnits) units"
+        coordinate = coord
+        title = dataPoints.address
+        subtitle = dataPoints.numOfUnitsLabel
     }
 }
 
 extension PropertyAnnotation: VisualAnnotation {
     var iconName: String? {
-        return numOfUnits > 1 ? "building.2.crop.circle" : "house.circle"
+        return numOfUnits ?? 0 > 1 ? "building.2.crop.circle" : "house.circle"
     }
     var color: UIColor {
-        switch numOfUnits {
+        switch numOfUnits ?? 0 {
         case ...1: return .systemGray
         case 2...4: return .systemYellow
         case 5...9: return .systemOrange

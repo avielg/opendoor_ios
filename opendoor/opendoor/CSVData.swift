@@ -9,15 +9,11 @@ import Foundation
 import MapKit
 import CryptoKit
 
-struct PropertyDataPoint: DataPoint {
-    var annotation: MKAnnotation
-}
-
 class CSVData: DataSource {
     var hash: DataSourceHash
 
     var item: DataSourceItem
-    var points: [DataPoint] = []
+    var points: [PropertyDataPoint] = []
 
     var rawData: [[String]]
     var titleLinesCount = 0
@@ -84,10 +80,30 @@ class CSVData: DataSource {
 
         print("GEO: \(rawData.count) places")
 
+        let latIndex: Int? = columns.firstIndex { $0.usage == .lat }
+        let lonIndex: Int? = columns.firstIndex { $0.usage == .lon }
+        let addressIndex: Int? = columns.firstIndex { $0.usage == .address }
+        let numOfUnitsIndex: Int? = columns.firstIndex { $0.usage == .numOfUnits }
+
         rawData
             .dropFirst(self.titleLinesCount)
-            .compactMap(PropertyAnnotation.init)
-            .map(PropertyDataPoint.init(annotation:))
+            .compactMap { data -> PropertyDataPoint in
+                let coord: CLLocationCoordinate2D?
+                if let latIndex = latIndex, let lonIndex = lonIndex, let lat = Double(data[latIndex]),
+                   let lon = Double(data[lonIndex]) {
+                    coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                } else {
+                    coord = nil
+                }
+
+                return PropertyDataPoint(
+                    rawData: [:],
+                    coordinate: coord,
+                    address: addressIndex.map { i in data[i] },
+                    numOfUnits: numOfUnitsIndex.map { i in data[i] }.flatMap { Int($0) },
+                    dataSourceItem: item
+                )
+            }
             .forEach { points.append($0) }
         print("MAP: \(points.count) annotations parsed from places")
     }

@@ -20,9 +20,9 @@ class ImageAndTitleButton: UIButton {
 class MapViewController: UIViewController {
 
     var dataSourcesAssignCancellable: AnyCancellable?
-    var dataSources = DataProvider.shared.dataSources {
+    var pointsLists = DataProvider.shared.pointsLists {
         didSet {
-            let annotations = dataSources.map{ $0.points }.reduce([], +).map{ $0.annotation }
+            let annotations = pointsLists.compactMap { $0.annotation }
             allAnnotations.append(contentsOf: annotations)
         }
     }
@@ -80,7 +80,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSourcesAssignCancellable = DataProvider.shared.$dataSources.assign(to: \.dataSources, on: self)
+        dataSourcesAssignCancellable = DataProvider.shared.$pointsLists.assign(to: \.pointsLists, on: self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -224,7 +224,7 @@ extension MapViewController: MKMapViewDelegate {
         let vc = PropertyDetailViewController()
         vc.modalPresentationStyle = .popover
         vc.popoverPresentationController?.sourceView = view
-        vc.data = propertyAnnotation.property
+        vc.data = pointsLists.first { $0.annotation == propertyAnnotation }
         self.present(vc, animated: true, completion: nil)
     }
 
