@@ -10,7 +10,7 @@ import Foundation
 
 struct DataSourceItem: Hashable {
     enum DataType {
-        case fileCSV, airTable, googleSheet
+        case fileCSV, airTable, googleSheet, postgres
     }
 
     let name: String

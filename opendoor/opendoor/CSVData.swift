@@ -18,34 +18,6 @@ class CSVData: DataSource {
     var rawData: [[String]]
     var titleLinesCount = 0
 
-    struct Column: Hashable {
-        enum Usage {
-            case lat, lon, address, numOfUnits
-            var icon: UIImage {
-                switch self {
-                case .lon: return UIImage(systemName: "arrow.up.arrow.down.square")!
-                case .lat: return UIImage(systemName: "arrow.left.arrow.right.square")!
-                case .address: return UIImage(systemName: "signpost.left")!
-                case .numOfUnits: return UIImage(systemName: "number.square")!
-                }
-            }
-            static func possibleUsage(for title: String) -> Usage? {
-                let startOrEndWith: (String)->Regex = {
-                    return Regex(stringLiteral: "^(\($0))|(\($0))$")
-                }
-                switch title.lowercased() {
-                case startOrEndWith("lat(itude)?"): return .lat
-                case startOrEndWith("lon(g)?(itude)?"): return .lon
-                case startOrEndWith("(street)?[\\s_-]?address"): return .address
-                case startOrEndWith("num(ber)?[\\s_-]?of[\\s_-]?unit(s)?"): return .numOfUnits
-                default: return nil
-                }
-            }
-        }
-        var title: String
-        var usage: Usage?
-        var icon: UIImage? { usage?.icon ?? UIImage(systemName: "questionmark.square.dashed")?.withAlphaComponent(0.5) }
-    }
     var columns: [Column] = []
     var configurations: [AnyHashable] { return columns }
 

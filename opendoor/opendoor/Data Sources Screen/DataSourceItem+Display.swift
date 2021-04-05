@@ -13,6 +13,7 @@ extension DataSourceItem.DataType {
         case .airTable: return #imageLiteral(resourceName: "airtable-logo")
         case .fileCSV: return #imageLiteral(resourceName: "csv-logo")
         case .googleSheet: return #imageLiteral(resourceName: "gsheet-logo")
+        case .postgres: return #imageLiteral(resourceName: "postgres-logo")
         }
     }
 }

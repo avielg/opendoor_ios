@@ -100,9 +100,13 @@ extension DataSourcesListViewController {
             picker.delegate = self
             self.present(picker, animated: true, completion: nil)
         }
+        let connectPostgresHandler: UIActionHandler = { _ in
+            self.performSegue(withIdentifier: "dataSourceConfig", sender: self)
+        }
+
         barButtonItemAdd.menu = UIMenu(title: "", children: [
             UIAction(title: "Import CSV File", image: DataSourceItem.DataType.fileCSV.icon, handler: addCSVHandler),
-            UIAction(title: "Connect Google Sheet", image: DataSourceItem.DataType.googleSheet.icon, handler: { _ in })
+            UIAction(title: "Connect Postgres", image: DataSourceItem.DataType.googleSheet.icon, handler: connectPostgresHandler)
         ])
     }
 }

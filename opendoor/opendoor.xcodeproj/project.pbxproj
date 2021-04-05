@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,9 @@
 		30C287D825E16ED500F3DBEC /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287D725E16ED500F3DBEC /* Parser.swift */; };
 		30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C287DC25E1903800F3DBEC /* AddressesViewController.swift */; };
 		30C6171025E1BF5A00BBE213 /* ExcelExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C6170F25E1BF5A00BBE213 /* ExcelExport.swift */; };
+		30F2E5BE261A57CA00F92CF4 /* PostgresClientKit in Frameworks */ = {isa = PBXBuildFile; productRef = 30F2E5BD261A57CA00F92CF4 /* PostgresClientKit */; };
+		30F2E5C3261A580500F92CF4 /* PostgresData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E5C2261A580500F92CF4 /* PostgresData.swift */; };
+		30F2E5C8261B3AD400F92CF4 /* DataSourceConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F2E5C7261B3AD400F92CF4 /* DataSourceConfigViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,8 @@
 		30C287D725E16ED500F3DBEC /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		30C287DC25E1903800F3DBEC /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
 		30C6170F25E1BF5A00BBE213 /* ExcelExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExcelExport.swift; sourceTree = "<group>"; };
+		30F2E5C2261A580500F92CF4 /* PostgresData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostgresData.swift; sourceTree = "<group>"; };
+		30F2E5C7261B3AD400F92CF4 /* DataSourceConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceConfigViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F2E5BE261A57CA00F92CF4 /* PostgresClientKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +130,7 @@
 				30396C892617877B0023C121 /* DataSourceItem.swift */,
 				30396C8E261787F60023C121 /* DataSourceItem+Display.swift */,
 				30396C9926178CD00023C121 /* DataSourceDetailViewController.swift */,
+				30F2E5C7261B3AD400F92CF4 /* DataSourceConfigViewController.swift */,
 			);
 			path = "Data Sources Screen";
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 				30C287A125DF46CF00F3DBEC /* Info.plist */,
 				30396CA126179E9F0023C121 /* DataProvider.swift */,
 				30396CA62617AFB30023C121 /* CSVData.swift */,
+				30F2E5C2261A580500F92CF4 /* PostgresData.swift */,
 			);
 			path = opendoor;
 			sourceTree = "<group>";
@@ -212,6 +220,9 @@
 			dependencies = (
 			);
 			name = opendoor;
+			packageProductDependencies = (
+				30F2E5BD261A57CA00F92CF4 /* PostgresClientKit */,
+			);
 			productName = opendoor;
 			productReference = 30C2879025DF46CE00F3DBEC /* opendoor.app */;
 			productType = "com.apple.product-type.application";
@@ -283,6 +294,9 @@
 				Base,
 			);
 			mainGroup = 30C2878725DF46CE00F3DBEC;
+			packageReferences = (
+				30F2E5BC261A57CA00F92CF4 /* XCRemoteSwiftPackageReference "PostgresClientKit" */,
+			);
 			productRefGroup = 30C2879125DF46CE00F3DBEC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -342,7 +356,9 @@
 				30396CA226179E9F0023C121 /* DataProvider.swift in Sources */,
 				30C2879425DF46CE00F3DBEC /* AppDelegate.swift in Sources */,
 				30396C8F261787F60023C121 /* DataSourceItem+Display.swift in Sources */,
+				30F2E5C3261A580500F92CF4 /* PostgresData.swift in Sources */,
 				30C2879625DF46CE00F3DBEC /* SceneDelegate.swift in Sources */,
+				30F2E5C8261B3AD400F92CF4 /* DataSourceConfigViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +699,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		30F2E5BC261A57CA00F92CF4 /* XCRemoteSwiftPackageReference "PostgresClientKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/codewinsdotcom/PostgresClientKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		30F2E5BD261A57CA00F92CF4 /* PostgresClientKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 30F2E5BC261A57CA00F92CF4 /* XCRemoteSwiftPackageReference "PostgresClientKit" */;
+			productName = PostgresClientKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 30C2878825DF46CE00F3DBEC /* Project object */;
 }
