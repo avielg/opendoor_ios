@@ -274,7 +274,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Postgres" id="DEw-aQ-qHe">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="3nj-Xy-HQM"/>
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="pId-ln-I5W">
                             <connections>
                                 <segue destination="KA7-Cd-gFp" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="OfJ-JQ-atT"/>
@@ -288,12 +287,48 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ZqK-od-Zew" id="GCm-pG-Ywh"/>
+                        <segue destination="oCU-5C-Bgs" kind="show" identifier="showTextView" id="thv-mh-A7p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcU-UO-1z5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="KA7-Cd-gFp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3608.6956521739135" y="37.5"/>
+        </scene>
+        <!--Text View Controller-->
+        <scene sceneID="FHo-MP-K7j">
+            <objects>
+                <viewController id="oCU-5C-Bgs" customClass="TextViewController" customModule="opendoor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dyF-qN-9o6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Z-eC-cYb">
+                                <rect key="frame" x="12" y="108" width="390" height="700"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bEy-98-lDW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Z7Z-eC-cYb" firstAttribute="leading" secondItem="bEy-98-lDW" secondAttribute="leading" constant="12" id="WQ9-8M-oMO"/>
+                            <constraint firstItem="bEy-98-lDW" firstAttribute="bottom" secondItem="Z7Z-eC-cYb" secondAttribute="bottom" id="eK6-op-amt"/>
+                            <constraint firstItem="bEy-98-lDW" firstAttribute="trailing" secondItem="Z7Z-eC-cYb" secondAttribute="trailing" constant="12" id="iO7-EO-iOQ"/>
+                            <constraint firstItem="bEy-98-lDW" firstAttribute="top" secondItem="Z7Z-eC-cYb" secondAttribute="top" id="wpB-DD-SD1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3iF-3A-z57"/>
+                    <connections>
+                        <outlet property="textView" destination="Z7Z-eC-cYb" id="cLR-t6-F0x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nrz-Af-7Wj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4479.7101449275369" y="37.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Uw-Ls-M3X">

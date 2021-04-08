@@ -18,9 +18,17 @@ class PostgresData: DataSource {
     var points: [PropertyDataPoint]
 
     // Configuration UI
-    var configurations: [AnyHashable] = [] // TODO
+    var configurations: [AnyHashable] { columns ?? [] }
     func content(for dataConfigIndex: Int, from contentConfig: UIListContentConfiguration) -> UIListContentConfiguration {
-        return contentConfig // TODO
+        var contentConfig = contentConfig
+        if
+            configurations.count > dataConfigIndex,
+            let col = configurations[dataConfigIndex] as? Column
+        {
+            contentConfig.text = col.title
+            contentConfig.image = col.icon
+        }
+        return contentConfig
     }
 
 
@@ -86,14 +94,16 @@ class PostgresData: DataSource {
     }
 
     var connection: Connection
-    var columns: [Column]?
-    var table: String
+    var columns: [Column]? = nil
     var query: String
 
-    required init(_ connection: Connection, columns: [Column]?, table: String, query: String, item: DataSourceItem) {
+    convenience init(_ connection: Connection, query: String, note: String = "Imported \(Date())") {
+        let item = DataSourceItem(name: "Postgres: \(connection.database)", note: note, type: .postgres)
+        self.init(connection, query: query, item: item)
+    }
+
+    required init(_ connection: Connection, query: String, item: DataSourceItem) {
         self.connection = connection
-        self.columns = columns?.isEmpty == true ? nil : columns
-        self.table = table
         self.query = query
         self.item = item
 
@@ -116,19 +126,14 @@ class PostgresData: DataSource {
             let connection = try PostgresClientKit.Connection(configuration: configuration)
             defer { connection.close() }
 
-            let columnsQuery = columns?.map{ $0.title }.joined(separator: ", ") ?? "*"
-            let text = """
-                SELECT \(columnsQuery) FROM \(table)
-                \(query)
-            """
-            let statement = try connection.prepareStatement(text: text)
+            let statement = try connection.prepareStatement(text: query)
             defer { statement.close() }
 
-            let cursor = try statement.execute(parameterValues: [], retrieveColumnMetadata: columnsQuery == "*")
+            let cursor = try statement.execute(parameterValues: [], retrieveColumnMetadata: true)
             defer { cursor.close() }
 
-            // Get columns from query result if not provided with the query
-            if columnsQuery == "*", let columnsData = cursor.columns {
+            // Get columns from query result
+            if let columnsData = cursor.columns {
                 self.columns = columnsData.map {
                     Column(title: $0.name, usage: Column.Usage.possibleUsage(for: $0.name))
                 }
@@ -150,16 +155,11 @@ class PostgresData: DataSource {
                     rawDict[col.element.title] = try rowValues[col.offset].optionalString()
 
                     switch col.element.usage {
-                    case .address:
-                        address = try rowValues[col.offset].optionalString()
-                    case .lat:
-                        lat = try rowValues[col.offset].optionalDouble()
-                    case .lon:
-                        lon = try rowValues[col.offset].optionalDouble()
-                    case .numOfUnits:
-                        numOfUnits = try rowValues[col.offset].optionalInt()
-                    case .none:
-                        break
+                    case .address: address = try rowValues[col.offset].optionalString()
+                    case .lat: lat = try rowValues[col.offset].optionalDouble()
+                    case .lon: lon = try rowValues[col.offset].optionalDouble()
+                    case .numOfUnits: numOfUnits = try rowValues[col.offset].optionalInt()
+                    case .none: break
                     }
                 }
 

@@ -14,6 +14,7 @@
 		30396C9A26178CD00023C121 /* DataSourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396C9926178CD00023C121 /* DataSourceDetailViewController.swift */; };
 		30396CA226179E9F0023C121 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396CA126179E9F0023C121 /* DataProvider.swift */; };
 		30396CA72617AFB30023C121 /* CSVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396CA62617AFB30023C121 /* CSVData.swift */; };
+		305EB92A261E7A8E00278821 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB929261E7A8E00278821 /* TextViewController.swift */; };
 		30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */; };
 		30AF444625E9DD5200AE79AC /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */; };
 		30AF444B25EB4D0A00AE79AC /* odin.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30AF444A25EB4D0A00AE79AC /* odin.csv */; };
@@ -59,6 +60,7 @@
 		30396C9926178CD00023C121 /* DataSourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceDetailViewController.swift; sourceTree = "<group>"; };
 		30396CA126179E9F0023C121 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		30396CA62617AFB30023C121 /* CSVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVData.swift; sourceTree = "<group>"; };
+		305EB929261E7A8E00278821 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		306AEA9D25E1D97B0027B790 /* opendoor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = opendoor.entitlements; sourceTree = "<group>"; };
 		30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAnnotationView.swift; sourceTree = "<group>"; };
 		30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				30396C8E261787F60023C121 /* DataSourceItem+Display.swift */,
 				30396C9926178CD00023C121 /* DataSourceDetailViewController.swift */,
 				30F2E5C7261B3AD400F92CF4 /* DataSourceConfigViewController.swift */,
+				305EB929261E7A8E00278821 /* TextViewController.swift */,
 			);
 			path = "Data Sources Screen";
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				30396C8A2617877B0023C121 /* DataSourceItem.swift in Sources */,
 				30396C7F2617846A0023C121 /* PropertyAnnotation.swift in Sources */,
 				30396CA72617AFB30023C121 /* CSVData.swift in Sources */,
+				305EB92A261E7A8E00278821 /* TextViewController.swift in Sources */,
 				30396C9A26178CD00023C121 /* DataSourceDetailViewController.swift in Sources */,
 				30C287DD25E1903800F3DBEC /* AddressesViewController.swift in Sources */,
 				30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */,
