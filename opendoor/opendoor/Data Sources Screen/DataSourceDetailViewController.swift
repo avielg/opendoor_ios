@@ -10,6 +10,8 @@ import UIKit
 class DataSourceDetailViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var barButtonItemMore: UIBarButtonItem!
+
     weak var titleImageView: UIImageView?
 
     var data: DataSource!
@@ -25,6 +27,7 @@ class DataSourceDetailViewController: UIViewController {
         title = data.item.name
 
         setupCollectionView()
+        setupMoreMenu(for: barButtonItemMore)
 
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         setupTitleImage(in: navigationBar)
@@ -87,4 +90,50 @@ extension DataSourceDetailViewController {
 
         titleImageView = imageView
     }
+
+    fileprivate func setupMoreMenu(for item: UIBarButtonItem) {
+        item.menu = UIMenu(title: "", children: [
+            UIAction(title: "Delete Data & Properties", image: UIImage(systemName: "trash"), handler: { _ in
+                let alert = UIAlertController(title: "Come Back Soon!", message: "🚧", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Close", style: .cancel))
+                self.present(alert, animated: true, completion: nil)
+            }),
+            UIAction(title: "Get Quick Link...", image: UIImage(systemName: "trash"), handler: { _ in
+                if
+                    let provider = self.data as? OpenDoorURLProvider,
+                    let url = provider.url
+                {
+                    let activityController = UIActivityViewController(activityItems: [url],
+                                                                      applicationActivities: [ActivityCopyLink()])
+                    activityController.popoverPresentationController?.barButtonItem = item
+                    self.present(activityController, animated: true)
+                }
+            })
+
+        ])
+    }
 }
+
+class ActivityCopyLink: UIActivity {
+    override var activityTitle: String? { "Copy Link" }
+    override var activityImage: UIImage? { UIImage(systemName: "link.circle") }
+    var activityCategory: UIActivity.Category { .action }
+    override var activityType: UIActivity.ActivityType { .copyToPasteboard }
+
+    override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
+        activityItems.contains { $0 is URL }
+    }
+
+    var url: URL?
+
+    override func prepare(withActivityItems activityItems: [Any]) {
+        guard let url = activityItems.lazy.compactMap({ $0 as? URL }).first
+        else { return }
+        self.url = url
+    }
+
+    override func perform() {
+        UIPasteboard.general.string = url?.absoluteString
+        activityDidFinish(true)
+    }
+ }

@@ -442,8 +442,11 @@
                             <constraint firstItem="4fd-21-SyI" firstAttribute="leading" secondItem="IaQ-TE-Bro" secondAttribute="leading" id="I2y-bh-ORY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Data Source" id="Waj-o5-Coj"/>
+                    <navigationItem key="navigationItem" title="Data Source" id="Waj-o5-Coj">
+                        <barButtonItem key="rightBarButtonItem" image="ellipsis.circle" catalog="system" id="pUg-sV-kFv"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="barButtonItemMore" destination="pUg-sV-kFv" id="8Xj-gD-x1d"/>
                         <outlet property="collectionView" destination="4fd-21-SyI" id="bVj-Xw-p1o"/>
                     </connections>
                 </viewController>
@@ -471,6 +474,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="pencil.and.outline" catalog="system" width="128" height="128"/>

@@ -181,3 +181,11 @@ class PostgresData: DataSource {
     }
 
 }
+
+extension PostgresData: OpenDoorURLProvider {
+    var url: URL? {
+        return OpenDoorURLScheme.postgresUrl(
+            dbUrl: connection.urlWithoutAuth.absoluteString,
+            query: query)
+    }
+}
