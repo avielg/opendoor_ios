@@ -99,9 +99,13 @@ class DataSourceConfigViewController: UIViewController {
             return
         }
 
-        data.fetchData { points in
-            DataProvider.shared.add(source: data)
-            dismiss(animated: true, completion: nil)
+        do {
+            try data.fetchData { points in
+                DataProvider.shared.add(source: data)
+                dismiss(animated: true, completion: nil)
+            }
+        } catch {
+            alert(error: error.localizedDescription)
         }
     }
 
@@ -120,6 +124,9 @@ class DataSourceConfigViewController: UIViewController {
 
     var url: String = "" { didSet { updateUI() } }
     var query: String = "" { didSet { updateUI() } }
+
+    var user: String = "" { didSet { updateUI() } }
+    var pass: String = "" { didSet { updateUI() } }
 }
 
 
@@ -129,17 +136,38 @@ extension DataSourceConfigViewController {
         var snapshot = NSDiffableDataSourceSnapshot<ListSection, ListCell>()
         snapshot.appendSections([.main])
         snapshot.appendItems(
-            [
-                .textView(label: "URL", value: url, valueChange: { [weak self] in self?.url = $0 }),
-                .textView(label: "Query", value: query, valueChange: { [weak self] in self?.query = $0 }),
-            ], toSection: .main)
+            [.textView(label: "URL", value: url, valueChange: { [weak self] in self?.url = $0 })],
+            toSection: .main)
+
+        if !url.isEmpty, let url = URL(string: self.url), url.user == nil || url.password == nil {
+            if user.isEmpty && url.user?.isEmpty == false {
+                user = url.user ?? ""
+                return /// setting `user` will call `updateUI()` again
+            }
+            if pass.isEmpty && url.password?.isEmpty == false {
+                pass = url.password ?? ""
+                return /// setting `pass` will call `updateUI()` again
+            }
+            snapshot.appendItems(
+                [
+                    .textView(label: "User", value: user, valueChange: { [weak self] in self?.user = $0 }),
+                    .textView(label: "Password", value: pass, valueChange: { [weak self] in self?.pass = $0 })
+                ],
+                toSection: .main)
+        }
+        snapshot.appendItems(
+            [.textView(label: "Query", value: query, valueChange: { [weak self] in self?.query = $0 })],
+            toSection: .main)
         dataSource?.apply(snapshot, animatingDifferences: viewIfLoaded?.window != nil)
     }
 
     fileprivate func postgresConnection() -> PostgresData.Connection? {
         guard let url = URL(string: self.url) else { return nil }
-        let connection = PostgresData.Connection(url: url, password: url.password.map { .md5Password(password:$0) } ?? .trust)
-        return connection
+        let password = pass.isEmpty ? url.password : pass
+        let cred: PostgresData.Connection.Credential =
+            password.map { .md5Password(password:$0) }
+            ?? .trust
+        return PostgresData.Connection(url: url, user: user, password: cred)
     }
 
     fileprivate func postgresData(with connection: PostgresData.Connection) -> PostgresData? {
