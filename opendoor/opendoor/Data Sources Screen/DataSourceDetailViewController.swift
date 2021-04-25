@@ -92,25 +92,27 @@ extension DataSourceDetailViewController {
     }
 
     fileprivate func setupMoreMenu(for item: UIBarButtonItem) {
-        item.menu = UIMenu(title: "", children: [
+        var children: [UIMenuElement] = [
             UIAction(title: "Delete Data & Properties", image: UIImage(systemName: "trash"), handler: { _ in
                 let alert = UIAlertController(title: "Come Back Soon!", message: "🚧", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Close", style: .cancel))
                 self.present(alert, animated: true, completion: nil)
-            }),
-            UIAction(title: "Get Quick Link...", image: UIImage(systemName: "trash"), handler: { _ in
-                if
-                    let provider = self.data as? OpenDoorURLProvider,
-                    let url = provider.url
-                {
+            })
+        ]
+
+        if let provider = self.data as? OpenDoorURLProvider {
+            children.append(
+                UIAction(title: "Get Quick Link...", image: UIImage(systemName: "trash"), handler: { _ in
+                    guard let url = provider.url else { return }
+
                     let activityController = UIActivityViewController(activityItems: [url],
                                                                       applicationActivities: [ActivityCopyLink()])
                     activityController.popoverPresentationController?.barButtonItem = item
                     self.present(activityController, animated: true)
-                }
-            })
-
-        ])
+                })
+            )
+        }
+        item.menu = UIMenu(title: "", children: children)
     }
 }
 
