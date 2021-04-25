@@ -133,7 +133,7 @@ extension DataSourceConfigViewController {
                 .textView(label: "URL", value: url, valueChange: { [weak self] in self?.url = $0 }),
                 .textView(label: "Query", value: query, valueChange: { [weak self] in self?.query = $0 }),
             ], toSection: .main)
-        dataSource.apply(snapshot, animatingDifferences: viewIfLoaded?.window != nil)
+        dataSource?.apply(snapshot, animatingDifferences: viewIfLoaded?.window != nil)
     }
 
     fileprivate func postgresConnection() -> PostgresData.Connection? {

@@ -95,6 +95,7 @@
                         <outlet property="buttonDraw" destination="ZNe-zI-MXB" id="QaT-Ww-YXR"/>
                         <outlet property="buttonFoundAddresses" destination="dcw-fh-olx" id="DTh-im-ZDO"/>
                         <outlet property="mapView" destination="tvf-R2-Wmg" id="879-1H-8Dn"/>
+                        <segue destination="49p-TA-vF2" kind="presentation" identifier="dataSourceConfig" id="C25-UZ-zNe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -181,7 +182,7 @@
             </objects>
             <point key="canvasLocation" x="1872" y="-263"/>
         </scene>
-        <!--Postgres-->
+        <!--Add Data-->
         <scene sceneID="jhH-3f-vjy">
             <objects>
                 <viewController id="sc2-dq-G6s" customClass="DataSourceConfigViewController" customModule="opendoor" customModuleProvider="target" sceneMemberID="viewController">
@@ -273,7 +274,7 @@
                             <constraint firstItem="id2-rP-GPY" firstAttribute="bottom" secondItem="ZqK-od-Zew" secondAttribute="bottom" id="ptR-49-ew1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Postgres" id="DEw-aQ-qHe">
+                    <navigationItem key="navigationItem" title="Add Data" id="DEw-aQ-qHe">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="pId-ln-I5W">
                             <connections>
                                 <segue destination="KA7-Cd-gFp" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="OfJ-JQ-atT"/>
@@ -459,6 +460,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="49p-TA-vF2" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ouY-1K-J54"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="rEm-cr-nF5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -473,6 +475,9 @@
             <point key="canvasLocation" x="2698.5507246376815" y="37.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="C25-UZ-zNe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="folder" catalog="system" width="128" height="97"/>

@@ -21,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             titlebar.toolbar = nil
         }
 #endif
+
+        handle(URLContexts: connectionOptions.urlContexts)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -51,6 +53,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
 }
 
+extension SceneDelegate {
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        handle(URLContexts: URLContexts)
+    }
+
+    struct Notification {
+        static var addPostgres = NSNotification.Name("SceneDelegate.addPostgres")
+    }
+
+    fileprivate func handle(URLContexts: Set<UIOpenURLContext>) {
+        guard let urlContext = URLContexts.first else { return }
+
+        if let (dbUrl, query) = OpenDoorURLScheme.postgresDbUrlAndQuery(from: urlContext.url) {
+            NotificationCenter.default.post(name: Notification.addPostgres, object: (dbUrl, query))
+        }
+    }
+}

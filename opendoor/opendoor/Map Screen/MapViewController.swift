@@ -81,6 +81,10 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSourcesAssignCancellable = DataProvider.shared.$pointsLists.assign(to: \.pointsLists, on: self)
+
+        NotificationCenter.default.addObserver(forName: SceneDelegate.Notification.addPostgres, object: nil, queue: nil) {
+            self.performSegue(withIdentifier: "dataSourceConfig", sender: $0.object)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -100,6 +104,14 @@ class MapViewController: UIViewController {
             let vc = nav.viewControllers.first as? AddressesViewController
         {
             vc.addresses = shownAnnotations
+        } else if
+            segue.identifier == "dataSourceConfig",
+            let nav = segue.destination as? UINavigationController,
+            let vc = nav.viewControllers.first as? DataSourceConfigViewController,
+            let (dbUrl, query) = sender as? (String, String)
+        {
+            vc.url = dbUrl
+            vc.query = query
         }
         isDrawing = false
     }
