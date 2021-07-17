@@ -82,18 +82,52 @@ class DataSourceConfigViewController: UIViewController {
         }
     }
 
-    /// Connect and/or query the database
-    @IBAction func actionSend(_ sender: UIBarButtonItem) {
-        func alert(error: String) {
-            let alert = UIAlertController(title: "Can't Connect", message: error, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-            present(alert, animated: true, completion: nil)
+    @IBAction func actionKeychain(_ sender: UIBarButtonItem) {
+        guard let url = URL(string: url) else {
+            alert(error: "Enter a URL first!")
+            return
         }
+
+        guard let existingKeychainConnection = PostgresData.Connection.fromKeychain(url: url)
+        else {
+            alert(error: "Can't find credentials for URL in keychain.")
+            return
+        }
+        user = existingKeychainConnection.user
+        pass = existingKeychainConnection.credential.rawValue
+    }
+
+    /// Connect and/or query the database
+
+    private func alert(error: String) {
+        let alert = UIAlertController(title: "Can't Connect", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    @IBAction func actionSend(_ sender: UIBarButtonItem) {
         guard let connection = postgresConnection() else {
             alert(error: "Make sure you enter a valid URL")
             return
         }
 
+        let existingKeychainConnection = PostgresData.Connection.fromKeychain(url: connection.urlWithoutAuth)
+        if  existingKeychainConnection == nil || existingKeychainConnection != connection {
+            let prompt = UIAlertController(title: "Save In Keychain?", message: "Would you like to save your user and password in Keychain?", preferredStyle: .alert)
+            prompt.addAction(UIAlertAction(title: "No", style: .cancel, handler: { _ in
+                self.fetchData(with: connection)
+            }))
+            prompt.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                connection.saveToKeychain()
+                self.fetchData(with: connection)
+            }))
+            present(prompt, animated: true, completion: nil)
+        } else {
+            fetchData(with: connection)
+        }
+    }
+
+    private func fetchData(with connection: PostgresData.Connection) {
         guard let data = postgresData(with: connection) else {
             alert(error: "Make sure you add comma seperated columns (or empty for *), and table name")
             return
@@ -140,6 +174,7 @@ extension DataSourceConfigViewController {
             toSection: .main)
 
         if !url.isEmpty, let url = URL(string: self.url), url.user == nil || url.password == nil {
+            // Populate user/pass from URL if available
             if user.isEmpty && url.user?.isEmpty == false {
                 user = url.user ?? ""
                 return /// setting `user` will call `updateUI()` again
@@ -167,6 +202,7 @@ extension DataSourceConfigViewController {
         let cred: PostgresData.Connection.Credential =
             password.map { .md5Password(password:$0) }
             ?? .trust
+        let user = user.isEmpty ? url.user : self.user
         return PostgresData.Connection(url: url, user: user, password: cred)
     }
 

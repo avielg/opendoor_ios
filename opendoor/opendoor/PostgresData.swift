@@ -10,6 +10,93 @@ import PostgresClientKit
 import MapKit
 import CryptoKit
 
+import SwiftKeychainWrapper
+
+extension PostgresData.Connection.Credential: Codable {
+    enum CodingKeys: String, CodingKey, CaseIterable {
+        case cleartextPassword
+        case md5Password
+        case scramSHA256
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        for key in CodingKeys.allCases {
+            if let value = try? container.decode(String.self, forKey: key) {
+                switch key {
+                case .cleartextPassword: self = .cleartextPassword(password: value)
+                case .md5Password: self = .md5Password(password: value)
+                case .scramSHA256: self = .scramSHA256(password: value)
+                }
+                return
+            }
+        }
+        self = .trust
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .cleartextPassword(let password): try container.encode(password, forKey: .cleartextPassword)
+        case .md5Password(let password): try container.encode(password, forKey: .md5Password)
+        case .scramSHA256(let password): try container.encode(password, forKey: .scramSHA256)
+        case .trust: break
+        }
+    }
+}
+
+extension PostgresData.Connection {
+    struct KeychainKey {
+        static let userKeyPrefix = "user_com.opendoorapp.url:"
+        static let passKeyPrefix = "pass_com.opendoorapp.url:"
+    }
+
+    func saveToKeychain() {
+        let result = KeychainWrapper.standard.set(user, forKey: KeychainKey.userKeyPrefix + urlWithoutAuth.absoluteString)
+        print("SAVED USER: \(result)")
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(credential) {
+            let result = KeychainWrapper.standard.set(encoded, forKey: KeychainKey.passKeyPrefix + urlWithoutAuth.absoluteString)
+            print("SAVED PASS: \(result)")
+        }
+    }
+
+    static func fromKeychain(url: URL) -> Self? {
+        let urlWithoutAuth: URL = {
+            if url.user == nil && url.password == nil { return url }
+            var comps = URLComponents()
+            comps.host = url.host
+            comps.port = url.port
+            comps.path = url.path
+            comps.scheme = url.scheme
+            comps.query = url.query
+            return comps.url!
+        }()
+
+        guard
+            let user = KeychainWrapper.standard.string(forKey: KeychainKey.userKeyPrefix + urlWithoutAuth.absoluteString),
+            let passData = KeychainWrapper.standard.data(forKey: KeychainKey.passKeyPrefix + urlWithoutAuth.absoluteString),
+            let pass = try? JSONDecoder().decode(Credential.self, from: passData)
+        else {
+            return nil
+        }
+        return PostgresData.Connection(url: url, user: user, password: pass)
+    }
+}
+
+extension PostgresData.Connection.Credential: Equatable {
+    static func == (lhs: PostgresData.Connection.Credential, rhs: PostgresData.Connection.Credential) -> Bool {
+        switch (lhs, rhs) {
+        case (.cleartextPassword(let l), .cleartextPassword(let r)): return l == r
+        case (.md5Password(let l), .md5Password(let r)): return l == r
+        case (.scramSHA256(let l), .scramSHA256(let r)): return l == r
+        case (.trust, .trust): return true
+        default: return false
+        }
+    }
+}
+extension PostgresData.Connection: Equatable { }
+
 class PostgresData: DataSource {
 
     var hash: DataSourceHash
@@ -45,6 +132,15 @@ class PostgresData: DataSource {
                 case .cleartextPassword(password: let pass): return .cleartextPassword(password: pass)
                 case .md5Password(password: let pass): return .md5Password(password: pass)
                 case .scramSHA256(password: let pass): return .scramSHA256(password: pass)
+                }
+            }
+
+            var rawValue: String {
+                switch self {
+                case .trust: return ""
+                case .cleartextPassword(let pass): return pass
+                case .md5Password(let pass): return pass
+                case .scramSHA256(let pass): return pass
                 }
             }
         }
@@ -113,7 +209,7 @@ class PostgresData: DataSource {
 
         points = []
     }
-    
+
     func fetchData(handle: ([PropertyDataPoint])-> Void) throws {
         var configuration = PostgresClientKit.ConnectionConfiguration()
         configuration.host = connection.host
@@ -122,38 +218,38 @@ class PostgresData: DataSource {
         configuration.user = connection.user
         configuration.credential = connection.credential.postgresClientValue
         configuration.applicationName = "opendoor"
-        
+
         let connection = try PostgresClientKit.Connection(configuration: configuration)
         defer { connection.close() }
-        
+
         let statement = try connection.prepareStatement(text: query)
         defer { statement.close() }
-        
+
         let cursor = try statement.execute(parameterValues: [], retrieveColumnMetadata: true)
         defer { cursor.close() }
-        
+
         // Get columns from query result
         if let columnsData = cursor.columns {
             self.columns = columnsData.map {
                 Column(title: $0.name, usage: Column.Usage.possibleUsage(for: $0.name))
             }
         }
-        
+
         var result = [PropertyDataPoint]()
-        
+
         for row in cursor {
             var lat: Double?
             var lon: Double?
             var address: String?
             var numOfUnits: Int?
-            
+
             var rawDict = [String: String]()
-            
+
             let rowValues = try row.get().columns
-            
+
             for col in self.columns!.enumerated() {
                 rawDict[col.element.title] = try rowValues[col.offset].optionalString()
-                
+
                 switch col.element.usage {
                 case .address: address = try rowValues[col.offset].optionalString()
                 case .lat: lat = try rowValues[col.offset].optionalDouble()
@@ -162,12 +258,12 @@ class PostgresData: DataSource {
                 case .none: break
                 }
             }
-            
+
             var coord: CLLocationCoordinate2D? = nil
             if let lat = lat, let lon = lon {
                 coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             }
-            
+
             let point = PropertyDataPoint(rawData: rawDict, coordinate: coord, address: address, numOfUnits: numOfUnits, dataSourceItem: self.item)
             result.append(point)
         }

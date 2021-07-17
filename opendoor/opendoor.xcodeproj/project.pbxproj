@@ -16,6 +16,7 @@
 		30396CA72617AFB30023C121 /* CSVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30396CA62617AFB30023C121 /* CSVData.swift */; };
 		305EB92A261E7A8E00278821 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB929261E7A8E00278821 /* TextViewController.swift */; };
 		3086A2B426351A370094B169 /* OpenDoorURLScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086A2B326351A370094B169 /* OpenDoorURLScheme.swift */; };
+		3086A2BD2635CC210094B169 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 3086A2BC2635CC210094B169 /* SwiftKeychainWrapper */; };
 		30AF444125E9725500AE79AC /* PropertyAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444025E9725500AE79AC /* PropertyAnnotationView.swift */; };
 		30AF444625E9DD5200AE79AC /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF444525E9DD5200AE79AC /* PropertyDetailViewController.swift */; };
 		30AF444B25EB4D0A00AE79AC /* odin.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30AF444A25EB4D0A00AE79AC /* odin.csv */; };
@@ -94,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3086A2BD2635CC210094B169 /* SwiftKeychainWrapper in Frameworks */,
 				30F2E5BE261A57CA00F92CF4 /* PostgresClientKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +230,7 @@
 			name = opendoor;
 			packageProductDependencies = (
 				30F2E5BD261A57CA00F92CF4 /* PostgresClientKit */,
+				3086A2BC2635CC210094B169 /* SwiftKeychainWrapper */,
 			);
 			productName = opendoor;
 			productReference = 30C2879025DF46CE00F3DBEC /* opendoor.app */;
@@ -302,6 +305,7 @@
 			mainGroup = 30C2878725DF46CE00F3DBEC;
 			packageReferences = (
 				30F2E5BC261A57CA00F92CF4 /* XCRemoteSwiftPackageReference "PostgresClientKit" */,
+				3086A2BB2635CC210094B169 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 30C2879125DF46CE00F3DBEC /* Products */;
 			projectDirPath = "";
@@ -709,6 +713,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3086A2BB2635CC210094B169 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		30F2E5BC261A57CA00F92CF4 /* XCRemoteSwiftPackageReference "PostgresClientKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/codewinsdotcom/PostgresClientKit";
@@ -720,6 +732,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3086A2BC2635CC210094B169 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3086A2BB2635CC210094B169 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		30F2E5BD261A57CA00F92CF4 /* PostgresClientKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 30F2E5BC261A57CA00F92CF4 /* XCRemoteSwiftPackageReference "PostgresClientKit" */;

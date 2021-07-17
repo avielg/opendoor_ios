@@ -280,11 +280,18 @@
                                 <segue destination="KA7-Cd-gFp" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="OfJ-JQ-atT"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Connect &amp; Query" style="done" id="aUz-Y7-7st">
-                            <connections>
-                                <action selector="actionSend:" destination="sc2-dq-G6s" id="xcq-V4-jKM"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Connect &amp; Query" style="done" id="aUz-Y7-7st">
+                                <connections>
+                                    <action selector="actionSend:" destination="sc2-dq-G6s" id="xcq-V4-jKM"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="lock.circle" catalog="system" id="4aO-Yf-FZd">
+                                <connections>
+                                    <action selector="actionKeychain:" destination="sc2-dq-G6s" id="qtt-Vj-eqg"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ZqK-od-Zew" id="GCm-pG-Ywh"/>
@@ -482,6 +489,7 @@
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="lock.circle" catalog="system" width="128" height="121"/>
         <image name="pencil.and.outline" catalog="system" width="128" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
